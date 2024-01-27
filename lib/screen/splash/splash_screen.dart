@@ -48,38 +48,30 @@ class _SplashScreenState extends State<SplashScreen> {
 
   toGoOnBoar() async {
     await Future.delayed(const Duration(milliseconds: 1450));
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const OnboardingScreen(),
-      ),
-    );
-
-    // final isFirst = await FirstOpenPulsePower.getFirstOpen();
-    // if (!isFirst) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => const OnboardingScreen(),
-    //     ),
-    //   );
-    //   await Future.delayed(const Duration(seconds: 8));
-    //   try {
-    //     final InAppReview inAppReview = InAppReview.instance;
-    //     if (await inAppReview.isAvailable()) {
-    //       inAppReview.requestReview();
-    //     }
-    //   } catch (e) {
-    //     throw Exception(e);
-    //   }
-    // } else {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => const AppbarBottomNavigatorScreen(),
-    //     ),
-    //   );
-    // }
+    final isFirst = await FirstOpenPulsePower.getFirstOpen();
+    if (!isFirst) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OnboardingScreen(),
+        ),
+      );
+      await Future.delayed(const Duration(seconds: 8));
+      try {
+        final InAppReview inAppReview = InAppReview.instance;
+        if (await inAppReview.isAvailable()) {
+          inAppReview.requestReview();
+        }
+      } catch (e) {
+        throw Exception(e);
+      }
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AppbarBottomNavigatorScreen(),
+        ),
+      );
+    }
   }
 }
