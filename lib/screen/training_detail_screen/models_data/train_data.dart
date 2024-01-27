@@ -5,10 +5,10 @@ final trainData = TrainingModel(
   mainImage: 'mainImage',
   trainingPlans: [
     TrainingPlan(
-      totalTime: 1,
+      totalTime: 2,
       kkall: 160,
       exerciseCount: 2,
-      approaches: 1,
+      approaches: 2,
       seconds: 15,
       exerciseList: [
         ExerciseList(

@@ -25,7 +25,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
   final PageController controller = PageController();
 
   int _currentPhase = 0; // 0 - готовность, 1 - тренировка, 2 - отдых
-  int _secondsRemaining = 5; // начальное время для готовности
+  int _secondsRemaining = 2; // начальное время для готовности
   int _totalTrainingTime = 0;
   bool _isPaused = false;
   bool _isFinished = false;
@@ -33,7 +33,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
   late int allExerciseIndex = 0;
   late int krug = 1;
   late int trainSeconds = widget.model.seconds;
-  late int restSeconds = 60 - widget.model.seconds;
+  late int restSeconds = 30 - widget.model.seconds;
   // late int trainSeconds = 1;
   // late int restSeconds = 1;
   late Timer timer;
@@ -67,28 +67,8 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
       case 1: // тренировка -> отдых
         setState(
           () {
-            if (krug == widget.model.approaches &&
-                allExerciseIndex == widget.model.exerciseCount - 1) {
-              _isFinished = true;
-              timer.cancel();
-            }
             _currentPhase = 2;
             _secondsRemaining = restSeconds;
-            if (krug < widget.model.approaches + 1) {
-              allExerciseIndex++;
-              if (allExerciseIndex < widget.model.exerciseCount) {
-                controller.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.ease,
-                );
-              } else {
-                krug++;
-                allExerciseIndex = 0;
-                controller.jumpTo(
-                  allExerciseIndex.toDouble(),
-                );
-              }
-            }
           },
         );
         break;
@@ -96,6 +76,27 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
         setState(() {
           _currentPhase = 1;
           _secondsRemaining = trainSeconds;
+          if (krug < widget.model.approaches + 1) {
+            allExerciseIndex++;
+            if (allExerciseIndex < widget.model.exerciseCount) {
+              controller.nextPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.ease,
+              );
+            } else {
+              krug++;
+              allExerciseIndex = 0;
+              controller.jumpTo(
+                allExerciseIndex.toDouble(),
+              );
+            }
+          }
+          if (krug == widget.model.approaches + 1 &&
+              allExerciseIndex == 0 &&
+              _totalTrainingTime == (widget.model.totalTime * 60)) {
+            _isFinished = true;
+            timer.cancel();
+          }
         });
         break;
     }
@@ -310,7 +311,9 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                                         fontFamily: 'Bai Jamjuree',
                                         fontSize: 30.h,
                                         fontWeight: FontWeight.w400,
-                                        color: Colors.white,
+                                        color: phaseText == 'TRAIN!'
+                                            ? const Color(0xffD479FF)
+                                            : Colors.white,
                                       ),
                                     ),
                                     SizedBox(height: 19.h),
