@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/premium/premium_screen.dart';
 import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
-import 'package:pulsepower_258/style/app_colors.dart';
-import 'package:pulsepower_258/style/app_text_styles.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
 import 'package:pulsepower_258/utils/urls.dart';
-import 'package:pulsepower_258/widgets/custom_button.dart';
 import 'package:pulsepower_258/widgets/web_view_news.dart';
 
 class SettingsScreen extends StatelessWidget {

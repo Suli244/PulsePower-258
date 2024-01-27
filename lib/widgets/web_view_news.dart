@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pulsepower_258/widgets/custom_app_bar_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebPulsePower extends StatefulWidget {
@@ -29,7 +28,9 @@ class _WebBlueScopeNewsState extends State<WebPulsePower> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarPulsePower(title: widget.title),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,

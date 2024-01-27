@@ -18,6 +18,7 @@ class AppImages {
   static const String premiumIcon = 'assets/images/premium_icon.png';  
   static const String premiumImage = 'assets/images/premium_image.png';  
   static const String premiumLogoIcon = 'assets/images/premium_logo_icon.png';  
+  static const String resumeIcon = 'assets/images/resume_icon.png';  
   static const String settingsIcon = 'assets/images/settings_icon.png';  
   static const String splashLogo = 'assets/images/splash_logo.png';  
   static const String trainingIcon = 'assets/images/training_icon.png';  

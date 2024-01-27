@@ -40,6 +40,8 @@ dependencies:
   flutter_bloc: ^8.1.1
   freezed: ^2.1.1
   in_app_review: ^2.0.6
+  percent_indicator: ^4.2.3
+  stop_watch_timer: ^3.1.0+4
 
 
   # The following adds the Cupertino Icons font to your application.
