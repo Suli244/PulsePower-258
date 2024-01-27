@@ -33,7 +33,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
   late int allExerciseIndex = 0;
   late int krug = 1;
   late int trainSeconds = widget.model.seconds;
-  late int restSeconds = 30 - widget.model.seconds;
+  late int restSeconds = 60 - widget.model.seconds;
   // late int trainSeconds = 1;
   // late int restSeconds = 1;
   late Timer timer;
