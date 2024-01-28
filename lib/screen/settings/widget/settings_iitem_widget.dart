@@ -35,14 +35,13 @@ class SettingsIitemWidget extends StatelessWidget {
               ],
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                style: AppTextStylesPulsePower.s21W300(color: Colors.white),
-              ),
-            ],
+          alignment: Alignment.center,
+          child: FittedBox(
+            child: Text(
+              title,
+              style: AppTextStylesPulsePower.s21W300(color: Colors.white),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
       ),
