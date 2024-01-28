@@ -5,23 +5,24 @@ import 'package:flutter/foundation.dart';
 class TrainingModelV2 {
   final String title;
   final String mainImage;
-  final bool isPremium;
+
   final List<TrainingPlanV2> trainingPlans;
 
   TrainingModelV2({
     required this.title,
     required this.mainImage,
     required this.trainingPlans,
-    required this.isPremium,
   });
 
-  factory TrainingModelV2.fromJson(Map<String, dynamic> json, bool isPremium) =>
+  factory TrainingModelV2.fromJson(Map<String, dynamic> json) =>
       TrainingModelV2(
         title: json["title"],
         mainImage: json["mainImage"],
-        isPremium: isPremium,
         trainingPlans: json['trainingPlans']
-            .map<TrainingPlanV2>((e) => TrainingPlanV2.fromJson(e, isPremium))
+            .map<TrainingPlanV2>(
+              (e) => TrainingPlanV2.fromJson(
+                  e, json['trainingPlans'].indexOf(e) > 2),
+            )
             .toList(),
       );
 
@@ -49,40 +50,6 @@ class TrainingPlanV2 {
     required this.isPremium,
   });
 
-  TrainingPlanV2 copyWith({
-    int? totalTime,
-    int? kkall,
-    int? exerciseCount,
-    int? approaches,
-    int? seconds,
-    bool? isPremium,
-    List<ExerciseList>? exerciseList,
-  }) {
-    return TrainingPlanV2(
-      isPremium: isPremium ?? this.isPremium,
-      totalTime: totalTime ?? this.totalTime,
-      kkall: kkall ?? this.kkall,
-      exerciseCount: exerciseCount ?? this.exerciseCount,
-      approaches: approaches ?? this.approaches,
-      seconds: seconds ?? this.seconds,
-      exerciseList: exerciseList ?? this.exerciseList,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'totalTime': totalTime});
-    result.addAll({'kkall': kkall});
-    result.addAll({'exerciseCount': exerciseCount});
-    result.addAll({'approaches': approaches});
-    result.addAll({'seconds': seconds});
-    result
-        .addAll({'exerciseList': exerciseList.map((x) => x.toMap()).toList()});
-
-    return result;
-  }
-
   factory TrainingPlanV2.fromJson(Map<String, dynamic> map, bool isPremium) {
     return TrainingPlanV2(
       isPremium: isPremium,
@@ -101,8 +68,6 @@ class TrainingPlanV2 {
       ),
     );
   }
-
-  String toJson() => json.encode(toMap());
 
   @override
   String toString() {

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,8 +19,7 @@ class TrainingCubit extends Cubit<TrainingState> {
 
       final listModel = result.data.map<TrainingModelV2>(
         (e) {
-          log('data: result.data.indexOf(e) > 7: ${result.data.indexOf(e) > 7} ');
-          return TrainingModelV2.fromJson(e, result.data.indexOf(e) > 7);
+          return TrainingModelV2.fromJson(e);
         },
       ).toList();
       emit(TrainingState.success(listModel));

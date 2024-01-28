@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
@@ -68,7 +66,6 @@ class TrainingDetailPage extends StatelessWidget {
           return const SizedBox(height: 12);
         },
         itemBuilder: (BuildContext context, int index) {
-          log('data: model.trainingPlans: ${model.trainingPlans[index].isPremium} ');
           return DetailItem(
             trainModel: model.trainingPlans[index],
             index: index + 1,
@@ -247,22 +244,27 @@ class DetailBodyWidget extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          trainModel.isPremium
+                              ? Image.asset(
+                                  AppImages.lockIcon,
+                                  scale: 4,
+                                )
+                              : Text(
+                                  model.title,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'Bai Jamjuree',
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: -0.33,
+                                  ),
+                                ),
                           Text(
-                            model.title,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: 'Bai Jamjuree',
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: -0.33,
-                            ),
-                          ),
-                          Text(
-                            index.toString(),
+                            trainModel.isPremium ? 'Premium' : index.toString(),
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.white,
-                              fontSize: 50,
+                              fontSize: trainModel.isPremium ? 20 : 50,
                               fontFamily: 'Bai Jamjuree',
                               fontWeight: FontWeight.w400,
                               letterSpacing: -0.33,
@@ -323,6 +325,7 @@ class ContainerIntoShadowWidget extends StatelessWidget {
             ),
           ),
         ),
+        padding: const EdgeInsets.only(top: 5, bottom: 2),
         child: FittedBox(
           child: Column(
             children: [
@@ -334,18 +337,19 @@ class ContainerIntoShadowWidget extends StatelessWidget {
                   fontSize: 22,
                   fontFamily: 'Bai Jamjuree',
                   fontWeight: FontWeight.w400,
-                  letterSpacing: -0.33,
                 ),
               ),
-              Text(
-                desc,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontFamily: 'Bai Jamjuree',
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: -0.33,
+              Opacity(
+                opacity: 0.60,
+                child: Text(
+                  desc,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontFamily: 'Bai Jamjuree',
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               )
             ],

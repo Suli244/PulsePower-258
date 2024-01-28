@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +5,7 @@ import 'package:pulsepower_258/screen/training/data/models_data/train_model.dart
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_detail_page.dart';
 import 'package:pulsepower_258/screen/training/presentation/cubit/training_cubit.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
+import 'package:pulsepower_258/utils/premium/premium.dart';
 
 class TrainingScreen extends StatefulWidget {
   const TrainingScreen({super.key});
@@ -16,32 +15,20 @@ class TrainingScreen extends StatefulWidget {
 }
 
 class _TrainingScreenState extends State<TrainingScreen> {
-  List<String> testList = [
-    'Begginer',
-    'sdf',
-    'sdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-    'asdfasdf',
-  ];
-
+  bool isPremium = false;
   @override
   void initState() {
     super.initState();
+    getPremium();
     context.read<TrainingCubit>().getListPlans();
   }
+
+  getPremium() async {
+    isPremium = await PremiumWebPulsePower.getPremium();
+    setState(() {});
+  }
+
+  // PremiumWebPulsePower
 
   pushToDetailPage(TrainingModelV2 model) {
     Navigator.push(
@@ -74,7 +61,6 @@ class _TrainingScreenState extends State<TrainingScreen> {
               return const SizedBox.shrink();
             },
             success: (models) {
-              log('data: models: ${models[1].isPremium} ');
               final filtered = List<TrainingModelV2>.from(models)..removeAt(0);
               return SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(

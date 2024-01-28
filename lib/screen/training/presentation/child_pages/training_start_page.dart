@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulsepower_258/screen/premium/premium_screen.dart';
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_detail_page.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -143,6 +144,9 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
               SizedBox(height: 11.h),
               Expanded(
                 child: PageView.builder(
+                  physics: widget.detailModel.trainModel.isPremium
+                      ? const NeverScrollableScrollPhysics()
+                      : const AlwaysScrollableScrollPhysics(),
                   controller: controller,
                   itemCount: widget.detailModel.trainModel.exerciseCount,
                   itemBuilder: (context, index) => Column(
@@ -194,7 +198,15 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
               SizedBox(height: 22.h),
               GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  if (widget.detailModel.trainModel.isPremium) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PremiumScreen()),
+                    );
+                  } else {
+                    Navigator.pop(context);
+                  }
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -212,7 +224,9 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
                     ),
                   ),
                   child: Text(
-                    'End train',
+                    widget.detailModel.trainModel.isPremium
+                        ? 'Go to premium'
+                        : 'End train',
                     style: TextStyle(
                       fontFamily: 'Bai Jamjuree',
                       fontSize: 22.h,
