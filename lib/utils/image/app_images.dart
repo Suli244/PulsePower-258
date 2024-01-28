@@ -8,6 +8,7 @@
 class AppImages {
   AppImages._();
   
+  static const String rectangle = 'assets/images/Rectangle.png';  
   static const String beginIcon = 'assets/images/begin_icon.png';  
   static const String bo = 'assets/images/bo.png';  
   static const String lockIcon = 'assets/images/lock_icon.png';  
