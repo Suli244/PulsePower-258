@@ -1,4 +1,5 @@
-import 'dart:math';
+import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,8 @@ class TrainingStartPage extends StatefulWidget {
 
 class _TrainingStartPageState extends State<TrainingStartPage> {
   PageController controller = PageController();
+  int currentIndex = 0;
+  ValueNotifier customValue = ValueNotifier<String>('Start Training');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,6 +151,10 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
                       ? const NeverScrollableScrollPhysics()
                       : const AlwaysScrollableScrollPhysics(),
                   controller: controller,
+                  onPageChanged: (value) {
+                    currentIndex = value;
+                    getTitle(value);
+                  },
                   itemCount: widget.detailModel.trainModel.exerciseCount,
                   itemBuilder: (context, index) => Column(
                     children: [
@@ -205,7 +212,18 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
                           builder: (context) => const PremiumScreen()),
                     );
                   } else {
-                    Navigator.pop(context);
+                    log('data: controller.page: ${controller.page} ');
+                    log('data: widget.detailModel.trainModel.exerciseCount.toDouble(): ${widget.detailModel.trainModel.exerciseList.length.toDouble()} ');
+                    if (controller.page! !=
+                        (widget.detailModel.trainModel.exerciseCount - 1.0)
+                            .toDouble()) {
+                      controller.nextPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.fastEaseInToSlowEaseOut,
+                      );
+                    } else {
+                      Navigator.pop(context);
+                    }
                   }
                 },
                 child: Container(
@@ -223,17 +241,22 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
                       ],
                     ),
                   ),
-                  child: Text(
-                    widget.detailModel.trainModel.isPremium
-                        ? 'Go to premium'
-                        : 'End train',
-                    style: TextStyle(
-                      fontFamily: 'Bai Jamjuree',
-                      fontSize: 22.h,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
+                  child: ValueListenableBuilder(
+                    valueListenable: customValue,
+                    builder: (_, __, child) {
+                      return Text(
+                        widget.detailModel.trainModel.isPremium
+                            ? 'Go to premium'
+                            : customValue.value,
+                        style: TextStyle(
+                          fontFamily: 'Bai Jamjuree',
+                          fontSize: 22.h,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      );
+                    },
                   ),
                 ),
               ),
@@ -244,6 +267,16 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
       ),
     );
   }
+
+  getTitle(int index) {
+    if (index + 1 == 1) {
+      customValue.value = 'Start training';
+    } else if (index + 1 == widget.detailModel.trainModel.exerciseCount) {
+      customValue.value = 'End train';
+    } else {
+      customValue.value = 'Next';
+    }
+  }
 }
 
 final class FontSizer {
@@ -253,6 +286,6 @@ final class FontSizer {
   }) {
     double val =
         (MediaQuery.of(context).size.width / 1400) * maxTextScaleFactor;
-    return max(1, min(val, maxTextScaleFactor));
+    return math.max(1, math.min(val, maxTextScaleFactor));
   }
 }
