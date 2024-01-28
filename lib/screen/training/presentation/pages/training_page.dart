@@ -128,7 +128,6 @@ class _TrainingScreenState extends State<TrainingScreen> {
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
-                              color: Colors.red,
                               image: DecorationImage(
                                 image: NetworkImage(
                                   model.mainImage,
