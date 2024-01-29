@@ -13,7 +13,8 @@ class TrainingModel {
         title: json["title"],
         mainImage: json["mainImage"],
         trainingPlans: json['trainingPlans']
-            .map<TrainingPlan>((e) => TrainingPlan.fromJson(e))
+            .map<TrainingPlan>((e) =>
+                TrainingPlan.fromJson(e, json['trainingPlans'].indexOf(e)))
             .toList(),
       );
 }
@@ -24,6 +25,8 @@ class TrainingPlan {
   final int exerciseCount;
   final int approaches;
   final int seconds;
+  final bool isPremium;
+
   final List<ExerciseList> exerciseList;
 
   TrainingPlan({
@@ -33,33 +36,39 @@ class TrainingPlan {
     required this.approaches,
     required this.seconds,
     required this.exerciseList,
+    required this.isPremium,
   });
 
-  factory TrainingPlan.fromJson(Map<String, dynamic> json) => TrainingPlan(
+  factory TrainingPlan.fromJson(Map<String, dynamic> json, int index) =>
+      TrainingPlan(
         totalTime: json["totalTime"],
         kkall: json["kkall"],
         exerciseCount: json["exerciseCount"],
         approaches: json["approaches"],
         seconds: json["seconds"],
-        exerciseList:
-            json["exerciseList"].map((e) => ExerciseList.fromJson(e)).toList(),
+        isPremium: index > 2,
+        exerciseList: json["exerciseList"]
+            .map<ExerciseList>(
+              (e) => ExerciseList.fromJson(e),
+            )
+            .toList(),
       );
 }
 
 class ExerciseList {
   final String image;
   final String title;
-  final String desciption;
+  final String description;
 
   ExerciseList({
     required this.image,
     required this.title,
-    required this.desciption,
+    required this.description,
   });
 
   factory ExerciseList.fromJson(Map<String, dynamic> json) => ExerciseList(
         image: json["image"],
         title: json["title"],
-        desciption: json["desciption"],
+        description: json["description"],
       );
 }

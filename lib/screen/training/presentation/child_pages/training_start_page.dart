@@ -1,11 +1,12 @@
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/premium/premium_screen.dart';
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_detail_page.dart';
+import 'package:pulsepower_258/screen/training_detail_screen/training_detail_screen.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TrainingStartPage extends StatefulWidget {
@@ -20,6 +21,19 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
   PageController controller = PageController();
   int currentIndex = 0;
   ValueNotifier customValue = ValueNotifier<String>('Start Training');
+
+  bool isPremium = true;
+  gettt() async {
+    final prefs = await SharedPreferences.getInstance();
+    isPremium = prefs.getBool('ISBUY') ?? false;
+  }
+
+  @override
+  void initState() {
+    gettt();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,14 +163,7 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
               SizedBox(height: 11.h),
               Expanded(
                 child: PageView.builder(
-                  physics: widget.detailModel.trainModel.isPremium
-                      ? const NeverScrollableScrollPhysics()
-                      : const AlwaysScrollableScrollPhysics(),
                   controller: controller,
-                  onPageChanged: (value) {
-                    currentIndex = value;
-                    getTitle(value);
-                  },
                   itemCount: widget.detailModel.trainModel.exerciseCount,
                   itemBuilder: (context, index) => Column(
                     children: [
@@ -208,25 +215,23 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
               SafeArea(
                 child: GestureDetector(
                   onTap: () {
-                    if (widget.detailModel.trainModel.isPremium) {
+                    if (widget.detailModel.trainModel.isPremium && !isPremium) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const PremiumScreen()),
+                          builder: (context) => const PremiumScreen(),
+                        ),
                       );
                     } else {
-                      log('data: controller.page: ${controller.page} ');
-                      log('data: widget.detailModel.trainModel.exerciseCount.toDouble(): ${widget.detailModel.trainModel.exerciseList.length.toDouble()} ');
-                      if (controller.page! !=
-                          (widget.detailModel.trainModel.exerciseCount - 1.0)
-                              .toDouble()) {
-                        controller.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.fastEaseInToSlowEaseOut,
-                        );
-                      } else {
-                        Navigator.pop(context);
-                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TrainingDetailScreen(
+                            model: widget.detailModel.model.trainingPlans[0],
+                            title: widget.detailModel.model.title,
+                          ),
+                        ),
+                      );
                     }
                   },
                   child: Container(

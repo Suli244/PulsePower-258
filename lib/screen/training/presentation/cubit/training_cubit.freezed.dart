@@ -19,7 +19,7 @@ mixin _$TrainingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<TrainingModelV2> model) success,
+    required TResult Function(List<TrainingModel> model) success,
     required TResult Function() loading,
     required TResult Function(dynamic exception) error,
   }) =>
@@ -27,7 +27,7 @@ mixin _$TrainingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<TrainingModelV2> model)? success,
+    TResult? Function(List<TrainingModel> model)? success,
     TResult? Function()? loading,
     TResult? Function(dynamic exception)? error,
   }) =>
@@ -35,7 +35,7 @@ mixin _$TrainingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<TrainingModelV2> model)? success,
+    TResult Function(List<TrainingModel> model)? success,
     TResult Function()? loading,
     TResult Function(dynamic exception)? error,
     required TResult orElse(),
@@ -125,7 +125,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<TrainingModelV2> model) success,
+    required TResult Function(List<TrainingModel> model) success,
     required TResult Function() loading,
     required TResult Function(dynamic exception) error,
   }) {
@@ -136,7 +136,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<TrainingModelV2> model)? success,
+    TResult? Function(List<TrainingModel> model)? success,
     TResult? Function()? loading,
     TResult? Function(dynamic exception)? error,
   }) {
@@ -147,7 +147,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<TrainingModelV2> model)? success,
+    TResult Function(List<TrainingModel> model)? success,
     TResult Function()? loading,
     TResult Function(dynamic exception)? error,
     required TResult orElse(),
@@ -206,7 +206,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<TrainingModelV2> model});
+  $Res call({List<TrainingModel> model});
 }
 
 /// @nodoc
@@ -226,7 +226,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
       null == model
           ? _value._model
           : model // ignore: cast_nullable_to_non_nullable
-              as List<TrainingModelV2>,
+              as List<TrainingModel>,
     ));
   }
 }
@@ -234,11 +234,11 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<TrainingModelV2> model) : _model = model;
+  const _$SuccessImpl(final List<TrainingModel> model) : _model = model;
 
-  final List<TrainingModelV2> _model;
+  final List<TrainingModel> _model;
   @override
-  List<TrainingModelV2> get model {
+  List<TrainingModel> get model {
     if (_model is EqualUnmodifiableListView) return _model;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_model);
@@ -271,7 +271,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<TrainingModelV2> model) success,
+    required TResult Function(List<TrainingModel> model) success,
     required TResult Function() loading,
     required TResult Function(dynamic exception) error,
   }) {
@@ -282,7 +282,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<TrainingModelV2> model)? success,
+    TResult? Function(List<TrainingModel> model)? success,
     TResult? Function()? loading,
     TResult? Function(dynamic exception)? error,
   }) {
@@ -293,7 +293,7 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<TrainingModelV2> model)? success,
+    TResult Function(List<TrainingModel> model)? success,
     TResult Function()? loading,
     TResult Function(dynamic exception)? error,
     required TResult orElse(),
@@ -343,9 +343,9 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements TrainingState {
-  const factory _Success(final List<TrainingModelV2> model) = _$SuccessImpl;
+  const factory _Success(final List<TrainingModel> model) = _$SuccessImpl;
 
-  List<TrainingModelV2> get model;
+  List<TrainingModel> get model;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -390,7 +390,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<TrainingModelV2> model) success,
+    required TResult Function(List<TrainingModel> model) success,
     required TResult Function() loading,
     required TResult Function(dynamic exception) error,
   }) {
@@ -401,7 +401,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<TrainingModelV2> model)? success,
+    TResult? Function(List<TrainingModel> model)? success,
     TResult? Function()? loading,
     TResult? Function(dynamic exception)? error,
   }) {
@@ -412,7 +412,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<TrainingModelV2> model)? success,
+    TResult Function(List<TrainingModel> model)? success,
     TResult Function()? loading,
     TResult Function(dynamic exception)? error,
     required TResult orElse(),
@@ -531,7 +531,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<TrainingModelV2> model) success,
+    required TResult Function(List<TrainingModel> model) success,
     required TResult Function() loading,
     required TResult Function(dynamic exception) error,
   }) {
@@ -542,7 +542,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<TrainingModelV2> model)? success,
+    TResult? Function(List<TrainingModel> model)? success,
     TResult? Function()? loading,
     TResult? Function(dynamic exception)? error,
   }) {
@@ -553,7 +553,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<TrainingModelV2> model)? success,
+    TResult Function(List<TrainingModel> model)? success,
     TResult Function()? loading,
     TResult Function(dynamic exception)? error,
     required TResult orElse(),

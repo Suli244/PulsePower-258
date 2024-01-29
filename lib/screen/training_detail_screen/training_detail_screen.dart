@@ -25,7 +25,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
   final PageController controller = PageController();
 
   int _currentPhase = 0; // 0 - готовность, 1 - тренировка, 2 - отдых
-  int _secondsRemaining = 2; // начальное время для готовности
+  int _secondsRemaining = 5; // начальное время для готовности
   int _totalTrainingTime = 0;
   bool _isPaused = false;
   bool _isFinished = false;
@@ -33,7 +33,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
   late int allExerciseIndex = 0;
   late int krug = 1;
   late int trainSeconds = widget.model.seconds;
-  late int restSeconds = 30 - widget.model.seconds;
+  late int restSeconds = 60 - widget.model.seconds;
   // late int trainSeconds = 1;
   // late int restSeconds = 1;
   late Timer timer;
@@ -499,6 +499,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                     SizedBox(height: 11.h),
                     Expanded(
                       child: PageView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
                         controller: controller,
                         itemCount: 4,
                         itemBuilder: (context, index) => Column(
@@ -509,7 +510,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                                 borderRadius: BorderRadius.circular(6),
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                      widget.model.exerciseList.first.image),
+                                      widget.model.exerciseList[index].image),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -517,15 +518,17 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                               width: 108.w,
                             ),
                             SizedBox(height: 18.h),
-                            Text(
-                              widget.model.exerciseList.first.desciption,
-                              style: TextStyle(
-                                fontFamily: 'Bai Jamjuree',
-                                fontSize: 20.h,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
+                            Flexible(
+                              child: Text(
+                                widget.model.exerciseList[index].description,
+                                style: TextStyle(
+                                  fontFamily: 'Bai Jamjuree',
+                                  fontSize: 20.h,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ],
                         ),

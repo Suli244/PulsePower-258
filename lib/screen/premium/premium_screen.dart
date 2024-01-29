@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
 import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:pulsepower_258/style/app_text_styles.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PremiumScreen extends StatelessWidget {
   const PremiumScreen({super.key});
@@ -60,7 +63,18 @@ class PremiumScreen extends StatelessWidget {
                 const Spacer(),
                 SettingsIitemWidget(
                   title: 'Buy Premium for 0.99\$',
-                  onTap: () {},
+                  onTap: () async {
+                    final prefs = await SharedPreferences.getInstance();
+                    prefs.setBool('ISBUY', true);
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) =>
+                            const AppbarBottomNavigatorScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  },
                 ),
                 SizedBox(height: 9.h),
                 TextButton(

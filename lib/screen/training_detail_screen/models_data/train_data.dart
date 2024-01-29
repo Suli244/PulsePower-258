@@ -10,19 +10,20 @@ final trainData = TrainingModel(
       exerciseCount: 2,
       approaches: 2,
       seconds: 15,
+      isPremium: false,
       exerciseList: [
         ExerciseList(
           image:
               'https://www.supersprint.com/public/img/01-504900-504930-504960-504990-505020.jpg',
           title: 'TITLE 1',
-          desciption:
+          description:
               'Lie on your back, bend your legs, lift the body to your knees, lower it back.',
         ),
         ExerciseList(
           image:
               'https://www.supersprint.com/public/img/01-504900-504930-504960-504990-505020.jpg',
           title: 'TITLE 2',
-          desciption:
+          description:
               'Stand up to the bar. Start moving alternately with each foot forward, as if running.',
         ),
         // ExerciseList(

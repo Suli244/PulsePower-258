@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
-import 'package:pulsepower_258/screen/training/data/models_data/train_model.dart';
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_start_page.dart';
+import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_model.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TrainingDetailPage extends StatelessWidget {
   const TrainingDetailPage({super.key, required this.model});
-  final TrainingModelV2 model;
+  final TrainingModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +86,8 @@ class DetailItem extends StatelessWidget {
     required this.model,
   });
 
-  final TrainingPlanV2 trainModel;
-  final TrainingModelV2 model;
+  final TrainingPlan trainModel;
+  final TrainingModel model;
   final int index;
 
   @override
@@ -126,15 +127,15 @@ class DetailItem extends StatelessWidget {
 }
 
 class StartTrainModel {
-  final TrainingPlanV2 trainModel;
-  final TrainingModelV2 model;
+  final TrainingPlan trainModel;
+  final TrainingModel model;
   final int index;
 
   StartTrainModel(
       {required this.trainModel, required this.model, required this.index});
 }
 
-class DetailBodyWidget extends StatelessWidget {
+class DetailBodyWidget extends StatefulWidget {
   const DetailBodyWidget({
     super.key,
     required this.trainModel,
@@ -142,9 +143,27 @@ class DetailBodyWidget extends StatelessWidget {
     required this.index,
   });
 
-  final TrainingPlanV2 trainModel;
-  final TrainingModelV2 model;
+  final TrainingPlan trainModel;
+  final TrainingModel model;
   final int index;
+
+  @override
+  State<DetailBodyWidget> createState() => _DetailBodyWidgetState();
+}
+
+class _DetailBodyWidgetState extends State<DetailBodyWidget> {
+  bool isPrem = true;
+  isPremis() async {
+    final prefs = await SharedPreferences.getInstance();
+    isPrem = prefs.getBool('ISBUY') ?? false;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    isPremis();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +219,7 @@ class DetailBodyWidget extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: ' ${model.title} $index',
+                      text: ' ${widget.model.title} ${widget.index}',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -234,7 +253,7 @@ class DetailBodyWidget extends StatelessWidget {
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                          model.mainImage,
+                          widget.model.mainImage,
                         ),
                       ),
                     ),
@@ -244,13 +263,13 @@ class DetailBodyWidget extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          trainModel.isPremium
+                          widget.trainModel.isPremium && !isPrem
                               ? Image.asset(
                                   AppImages.lockIcon,
                                   scale: 4,
                                 )
                               : Text(
-                                  model.title,
+                                  widget.model.title,
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -260,11 +279,15 @@ class DetailBodyWidget extends StatelessWidget {
                                   ),
                                 ),
                           Text(
-                            trainModel.isPremium ? 'Premium' : index.toString(),
+                            widget.trainModel.isPremium && !isPrem
+                                ? 'Premium'
+                                : widget.index.toString(),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: trainModel.isPremium ? 20 : 50,
+                              fontSize: widget.trainModel.isPremium && !isPrem
+                                  ? 20
+                                  : 50,
                               fontFamily: 'Bai Jamjuree',
                               fontWeight: FontWeight.w400,
                               letterSpacing: -0.33,
@@ -280,15 +303,15 @@ class DetailBodyWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       ContainerIntoShadowWidget(
-                        title: trainModel.seconds.toString(),
+                        title: widget.trainModel.totalTime.toString(),
                         desc: 'Min',
                       ),
                       ContainerIntoShadowWidget(
-                        title: trainModel.kkall.toString(),
+                        title: widget.trainModel.kkall.toString(),
                         desc: 'Kcal',
                       ),
                       ContainerIntoShadowWidget(
-                        title: trainModel.exerciseCount.toString(),
+                        title: widget.trainModel.exerciseCount.toString(),
                         desc: 'Exercises',
                       ),
                     ],
@@ -316,7 +339,6 @@ class ContainerIntoShadowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * 0.086,
         width: 170,
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -326,34 +348,32 @@ class ContainerIntoShadowWidget extends StatelessWidget {
           ),
         ),
         padding: const EdgeInsets.only(top: 5, bottom: 2),
-        child: FittedBox(
-          child: Column(
-            children: [
-              Text(
-                title,
+        child: Column(
+          children: [
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontFamily: 'Bai Jamjuree',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            Opacity(
+              opacity: 0.60,
+              child: Text(
+                desc,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
+                  fontSize: 15,
                   fontFamily: 'Bai Jamjuree',
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              Opacity(
-                opacity: 0.60,
-                child: Text(
-                  desc,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontFamily: 'Bai Jamjuree',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ));
   }
 }

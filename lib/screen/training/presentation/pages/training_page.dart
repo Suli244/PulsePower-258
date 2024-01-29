@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulsepower_258/screen/training/data/models_data/train_model.dart';
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_detail_page.dart';
 import 'package:pulsepower_258/screen/training/presentation/cubit/training_cubit.dart';
+import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_model.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
 import 'package:pulsepower_258/utils/premium/premium.dart';
 
@@ -30,7 +30,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
 
   // PremiumWebPulsePower
 
-  pushToDetailPage(TrainingModelV2 model) {
+  pushToDetailPage(TrainingModel model) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -61,7 +61,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
               return const SizedBox.shrink();
             },
             success: (models) {
-              final filtered = List<TrainingModelV2>.from(models)..removeAt(0);
+              final filtered = List<TrainingModel>.from(models)..removeAt(0);
               return SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(
                   vertical: 33,
