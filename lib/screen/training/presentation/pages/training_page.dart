@@ -76,7 +76,6 @@ class _TrainingScreenState extends State<TrainingScreen> {
                           height: 121,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border: Border.all(color: Colors.red),
                             image: DecorationImage(
                               fit: BoxFit.fitWidth,
                               image: NetworkImage(models.first.mainImage),
