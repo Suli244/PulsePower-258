@@ -72,10 +72,11 @@ class _TrainingScreenState extends State<TrainingScreen> {
                     GestureDetector(
                       onTap: () => pushToDetailPage(models.first),
                       child: Container(
-                          width: 356,
+                          width: double.infinity,
                           height: 121,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
+                            border: Border.all(color: Colors.red),
                             image: DecorationImage(
                               fit: BoxFit.fitWidth,
                               image: NetworkImage(models.first.mainImage),

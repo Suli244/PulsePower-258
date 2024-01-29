@@ -73,17 +73,19 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
           const SizedBox(width: 15),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            const SizedBox(height: 10),
-            DetailBodyWidget(
-              trainModel: widget.detailModel.trainModel,
-              model: widget.detailModel.model,
-              index: widget.detailModel.index,
-            ),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              DetailBodyWidget(
+                trainModel: widget.detailModel.trainModel,
+                model: widget.detailModel.model,
+                index: widget.detailModel.index,
+              ),
+            ],
+          ),
         ),
       ),
       bottomSheet: BottomSheet(
@@ -203,60 +205,62 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
                 ),
               ),
               SizedBox(height: 22.h),
-              GestureDetector(
-                onTap: () {
-                  if (widget.detailModel.trainModel.isPremium) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PremiumScreen()),
-                    );
-                  } else {
-                    log('data: controller.page: ${controller.page} ');
-                    log('data: widget.detailModel.trainModel.exerciseCount.toDouble(): ${widget.detailModel.trainModel.exerciseList.length.toDouble()} ');
-                    if (controller.page! !=
-                        (widget.detailModel.trainModel.exerciseCount - 1.0)
-                            .toDouble()) {
-                      controller.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.fastEaseInToSlowEaseOut,
+              SafeArea(
+                child: GestureDetector(
+                  onTap: () {
+                    if (widget.detailModel.trainModel.isPremium) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PremiumScreen()),
                       );
                     } else {
-                      Navigator.pop(context);
+                      log('data: controller.page: ${controller.page} ');
+                      log('data: widget.detailModel.trainModel.exerciseCount.toDouble(): ${widget.detailModel.trainModel.exerciseList.length.toDouble()} ');
+                      if (controller.page! !=
+                          (widget.detailModel.trainModel.exerciseCount - 1.0)
+                              .toDouble()) {
+                        controller.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.fastEaseInToSlowEaseOut,
+                        );
+                      } else {
+                        Navigator.pop(context);
+                      }
                     }
-                  }
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    gradient: const LinearGradient(
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.topRight,
-                      colors: [
-                        Color(0xff8A58F4),
-                        Color(0xffCB58FF),
-                      ],
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      gradient: const LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        colors: [
+                          Color(0xff8A58F4),
+                          Color(0xffCB58FF),
+                        ],
+                      ),
                     ),
-                  ),
-                  child: ValueListenableBuilder(
-                    valueListenable: customValue,
-                    builder: (_, __, child) {
-                      return Text(
-                        widget.detailModel.trainModel.isPremium
-                            ? 'Go to premium'
-                            : customValue.value,
-                        style: TextStyle(
-                          fontFamily: 'Bai Jamjuree',
-                          fontSize: 22.h,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      );
-                    },
+                    child: ValueListenableBuilder(
+                      valueListenable: customValue,
+                      builder: (_, __, child) {
+                        return Text(
+                          widget.detailModel.trainModel.isPremium
+                              ? 'Go to premium'
+                              : customValue.value,
+                          style: TextStyle(
+                            fontFamily: 'Bai Jamjuree',
+                            fontSize: 22.h,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
