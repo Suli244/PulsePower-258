@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_data.dart';
-import 'package:pulsepower_258/screen/training_detail_screen/training_detail_screen.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
 
 class MainScreen extends StatelessWidget {
@@ -23,15 +20,15 @@ class MainScreen extends StatelessWidget {
       child: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              CupertinoPageRoute(
-                builder: (context) => TrainingDetailScreen(
-                  model: trainData.trainingPlans.first,
-                  title: 'Beginner 4',
-                ),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   CupertinoPageRoute(
+            //     builder: (context) => TrainingDetailScreen(
+            //       model: trainData.trainingPlans.first,
+            //       title: 'Beginner 4',
+            //     ),
+            //   ),
+            // );
           },
           child: const Text(
             'Treining',

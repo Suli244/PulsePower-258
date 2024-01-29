@@ -229,6 +229,8 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
                           builder: (context) => TrainingDetailScreen(
                             model: widget.detailModel.model.trainingPlans[0],
                             title: widget.detailModel.model.title,
+                            index: widget.detailModel.index,
+                            mainImage: widget.detailModel.model.mainImage,
                           ),
                         ),
                       );

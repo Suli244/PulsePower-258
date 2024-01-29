@@ -2,7 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:pulsepower_258/screen/training/presentation/child_pages/training_detail_page.dart';
+import 'package:pulsepower_258/screen/training_detail_screen/hive_model/train_hive_model.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_model.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
@@ -13,9 +17,13 @@ class TrainingDetailScreen extends StatefulWidget {
     super.key,
     required this.model,
     required this.title,
+    required this.index,
+    required this.mainImage,
   });
   final TrainingPlan model;
   final String title;
+  final int index;
+  final String mainImage;
 
   @override
   State<TrainingDetailScreen> createState() => _TrainingDetailScreenState();
@@ -285,22 +293,14 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                               ],
                             )
                           : _isFinished
-                              ? Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.pink,
-                                  ),
-                                  width: double.infinity,
-                                  height: 200,
-                                  child: Text(
-                                    'FINISHHH!',
-                                    style: TextStyle(
-                                      fontFamily: 'Bai Jamjuree',
-                                      fontSize: 20.h,
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.white,
-                                    ),
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: SuccessBodyWidget(
+                                    trainModel: widget.model,
+                                    title: widget.title,
+                                    index: widget.index,
+                                    mainImage: widget.mainImage,
                                   ),
                                 )
                               : Column(
@@ -399,30 +399,47 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                       ),
                     ),
                     SizedBox(height: 49.h),
-                    Container(
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        gradient: const LinearGradient(
-                          begin: Alignment.bottomLeft,
-                          end: Alignment.topRight,
-                          colors: [
-                            Color(0xffCB58FF),
-                            Color(0xff8A58F4),
-                          ],
+                    GestureDetector(
+                      onTap: () async {
+                        var trainbox =
+                            await Hive.openBox<TrainHiveModel>('tain');
+                        final dateNow = DateTime.now();
+                        final date =
+                            DateFormat('dd.MM.yyyy HH:mm').format(dateNow);
+                        trainbox.add(
+                          TrainHiveModel(
+                            calory: widget.model.kkall,
+                            date: date,
+                            title: widget.title,
+                            index: widget.index,
+                          ),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: double.infinity,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          gradient: const LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Color(0xffCB58FF),
+                              Color(0xff8A58F4),
+                            ],
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        'End train',
-                        style: TextStyle(
-                          fontFamily: 'Bai Jamjuree',
-                          fontSize: 22.h,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
+                        child: Text(
+                          'End train',
+                          style: TextStyle(
+                            fontFamily: 'Bai Jamjuree',
+                            fontSize: 22.h,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     SizedBox(height: 40.h),
@@ -545,30 +562,47 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                       ),
                     ),
                     SizedBox(height: 22.h),
-                    Container(
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        gradient: const LinearGradient(
-                          begin: Alignment.bottomLeft,
-                          end: Alignment.topRight,
-                          colors: [
-                            Color(0xffA3053E),
-                            Color(0xffB72323),
-                          ],
+                    GestureDetector(
+                      onTap: () async {
+                        var trainbox =
+                            await Hive.openBox<TrainHiveModel>('tain');
+                        final dateNow = DateTime.now();
+                        final date =
+                            DateFormat('dd.MM.yyyy HH:mm').format(dateNow);
+                        trainbox.add(
+                          TrainHiveModel(
+                            calory: widget.model.kkall,
+                            date: date,
+                            title: widget.title,
+                            index: widget.index,
+                          ),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: double.infinity,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          gradient: const LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Color(0xffA3053E),
+                              Color(0xffB72323),
+                            ],
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        'End train',
-                        style: TextStyle(
-                          fontFamily: 'Bai Jamjuree',
-                          fontSize: 22.h,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
+                        child: Text(
+                          'End train',
+                          style: TextStyle(
+                            fontFamily: 'Bai Jamjuree',
+                            fontSize: 22.h,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                     SizedBox(height: 40.h),
@@ -583,5 +617,176 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
   void dispose() {
     timer.cancel();
     super.dispose();
+  }
+}
+
+class SuccessBodyWidget extends StatefulWidget {
+  const SuccessBodyWidget({
+    super.key,
+    required this.trainModel,
+    required this.title,
+    required this.index,
+    required this.mainImage,
+  });
+
+  final TrainingPlan trainModel;
+  final String title;
+  final int index;
+  final String mainImage;
+
+  @override
+  State<SuccessBodyWidget> createState() => _SuccessBodyWidgetState();
+}
+
+class _SuccessBodyWidgetState extends State<SuccessBodyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity.w,
+      // height: 227,
+      decoration: ShapeDecoration(
+        color: const Color(0xFF444444),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+        shadows: const [
+          BoxShadow(
+            color: Color(0x7F000000),
+            blurRadius: 2,
+            offset: Offset(0, 2),
+            spreadRadius: 0,
+          )
+        ],
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity.w,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(6),
+                topLeft: Radius.circular(6),
+              ),
+              color: Color(0xff535353),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x7F000000),
+                  blurRadius: 2,
+                  offset: Offset(0, 2),
+                  spreadRadius: 0,
+                )
+              ],
+            ),
+            alignment: Alignment.center,
+            height: 41,
+            child: FittedBox(
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    const TextSpan(
+                      text: 'Training plane ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: 'Bai Jamjuree',
+                        letterSpacing: -0.33,
+                      ),
+                    ),
+                    TextSpan(
+                      text: widget.title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: 'Bai Jamjuree',
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: -0.33,
+                      ),
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 8,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.red,
+                      border: Border.all(
+                        width: 1.5,
+                        color: Colors.white,
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                          widget.mainImage,
+                        ),
+                      ),
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    alignment: Alignment.center,
+                    child: FittedBox(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            widget.title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontFamily: 'Bai Jamjuree',
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: -0.33,
+                            ),
+                          ),
+                          Text(
+                            widget.index.toString(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 50,
+                              fontFamily: 'Bai Jamjuree',
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: -0.33,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    children: [
+                      ContainerIntoShadowWidget(
+                        title: widget.trainModel.totalTime.toString(),
+                        desc: 'Min',
+                      ),
+                      ContainerIntoShadowWidget(
+                        title: widget.trainModel.kkall.toString(),
+                        desc: 'Kcal',
+                      ),
+                      ContainerIntoShadowWidget(
+                        title: widget.trainModel.exerciseCount.toString(),
+                        desc: 'Exercises',
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
