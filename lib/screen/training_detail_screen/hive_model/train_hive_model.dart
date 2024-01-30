@@ -25,6 +25,6 @@ class TrainHiveModel extends HiveObject {
 
   @override
   String toString() {
-    return date;
+    return 'date:$date,calory:$calory, title:$title, index:$index';
   }
 }
