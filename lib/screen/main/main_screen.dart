@@ -55,7 +55,13 @@ class _MainScreenState extends State<MainScreen> {
             loading: () => const Center(
               child: CircularProgressIndicator(),
             ),
-            loaded: (model, trainingData, show) => SingleChildScrollView(
+            loaded: (
+              model,
+              kkal,
+              trainingData,
+              show,
+            ) =>
+                SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [
@@ -115,8 +121,8 @@ class _MainScreenState extends State<MainScreen> {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                const Text("0",
-                                    style: TextStyle(
+                                Text(kkal.toString(),
+                                    style: const TextStyle(
                                         fontSize: 22,
                                         fontWeight: FontWeight.w400,
                                         color: Colors.white)),
@@ -153,8 +159,8 @@ class _MainScreenState extends State<MainScreen> {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                const Text("0",
-                                    style: TextStyle(
+                                Text(trainingData?.length.toString() ?? '0',
+                                    style: const TextStyle(
                                         fontSize: 22,
                                         fontWeight: FontWeight.w400,
                                         color: Colors.white)),

@@ -19,7 +19,7 @@ mixin _$MainCubitState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<TrainingModel> model,
+    required TResult Function(List<TrainingModel> model, int kkal,
             List<dynamic>? trainignData, bool showTraining)
         loaded,
     required TResult Function(String message) error,
@@ -28,8 +28,8 @@ mixin _$MainCubitState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<TrainingModel> model, List<dynamic>? trainignData,
-            bool showTraining)?
+    TResult? Function(List<TrainingModel> model, int kkal,
+            List<dynamic>? trainignData, bool showTraining)?
         loaded,
     TResult? Function(String message)? error,
   }) =>
@@ -37,8 +37,8 @@ mixin _$MainCubitState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<TrainingModel> model, List<dynamic>? trainignData,
-            bool showTraining)?
+    TResult Function(List<TrainingModel> model, int kkal,
+            List<dynamic>? trainignData, bool showTraining)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -125,7 +125,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<TrainingModel> model,
+    required TResult Function(List<TrainingModel> model, int kkal,
             List<dynamic>? trainignData, bool showTraining)
         loaded,
     required TResult Function(String message) error,
@@ -137,8 +137,8 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<TrainingModel> model, List<dynamic>? trainignData,
-            bool showTraining)?
+    TResult? Function(List<TrainingModel> model, int kkal,
+            List<dynamic>? trainignData, bool showTraining)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -149,8 +149,8 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<TrainingModel> model, List<dynamic>? trainignData,
-            bool showTraining)?
+    TResult Function(List<TrainingModel> model, int kkal,
+            List<dynamic>? trainignData, bool showTraining)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -208,6 +208,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   @useResult
   $Res call(
       {List<TrainingModel> model,
+      int kkal,
       List<dynamic>? trainignData,
       bool showTraining});
 }
@@ -224,6 +225,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? model = null,
+    Object? kkal = null,
     Object? trainignData = freezed,
     Object? showTraining = null,
   }) {
@@ -232,6 +234,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value._model
           : model // ignore: cast_nullable_to_non_nullable
               as List<TrainingModel>,
+      kkal: null == kkal
+          ? _value.kkal
+          : kkal // ignore: cast_nullable_to_non_nullable
+              as int,
       trainignData: freezed == trainignData
           ? _value._trainignData
           : trainignData // ignore: cast_nullable_to_non_nullable
@@ -249,6 +255,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
       {required final List<TrainingModel> model,
+      required this.kkal,
       final List<dynamic>? trainignData,
       required this.showTraining})
       : _model = model,
@@ -262,6 +269,8 @@ class _$LoadedImpl implements _Loaded {
     return EqualUnmodifiableListView(_model);
   }
 
+  @override
+  final int kkal;
   final List<dynamic>? _trainignData;
   @override
   List<dynamic>? get trainignData {
@@ -277,7 +286,7 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   String toString() {
-    return 'MainCubitState.loaded(model: $model, trainignData: $trainignData, showTraining: $showTraining)';
+    return 'MainCubitState.loaded(model: $model, kkal: $kkal, trainignData: $trainignData, showTraining: $showTraining)';
   }
 
   @override
@@ -286,6 +295,7 @@ class _$LoadedImpl implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
             const DeepCollectionEquality().equals(other._model, _model) &&
+            (identical(other.kkal, kkal) || other.kkal == kkal) &&
             const DeepCollectionEquality()
                 .equals(other._trainignData, _trainignData) &&
             (identical(other.showTraining, showTraining) ||
@@ -296,6 +306,7 @@ class _$LoadedImpl implements _Loaded {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_model),
+      kkal,
       const DeepCollectionEquality().hash(_trainignData),
       showTraining);
 
@@ -309,38 +320,38 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<TrainingModel> model,
+    required TResult Function(List<TrainingModel> model, int kkal,
             List<dynamic>? trainignData, bool showTraining)
         loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(model, trainignData, showTraining);
+    return loaded(model, kkal, trainignData, showTraining);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<TrainingModel> model, List<dynamic>? trainignData,
-            bool showTraining)?
+    TResult? Function(List<TrainingModel> model, int kkal,
+            List<dynamic>? trainignData, bool showTraining)?
         loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(model, trainignData, showTraining);
+    return loaded?.call(model, kkal, trainignData, showTraining);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<TrainingModel> model, List<dynamic>? trainignData,
-            bool showTraining)?
+    TResult Function(List<TrainingModel> model, int kkal,
+            List<dynamic>? trainignData, bool showTraining)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(model, trainignData, showTraining);
+      return loaded(model, kkal, trainignData, showTraining);
     }
     return orElse();
   }
@@ -383,10 +394,12 @@ class _$LoadedImpl implements _Loaded {
 abstract class _Loaded implements MainCubitState {
   const factory _Loaded(
       {required final List<TrainingModel> model,
+      required final int kkal,
       final List<dynamic>? trainignData,
       required final bool showTraining}) = _$LoadedImpl;
 
   List<TrainingModel> get model;
+  int get kkal;
   List<dynamic>? get trainignData;
   bool get showTraining;
   @JsonKey(ignore: true)
@@ -459,7 +472,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<TrainingModel> model,
+    required TResult Function(List<TrainingModel> model, int kkal,
             List<dynamic>? trainignData, bool showTraining)
         loaded,
     required TResult Function(String message) error,
@@ -471,8 +484,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<TrainingModel> model, List<dynamic>? trainignData,
-            bool showTraining)?
+    TResult? Function(List<TrainingModel> model, int kkal,
+            List<dynamic>? trainignData, bool showTraining)?
         loaded,
     TResult? Function(String message)? error,
   }) {
@@ -483,8 +496,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<TrainingModel> model, List<dynamic>? trainignData,
-            bool showTraining)?
+    TResult Function(List<TrainingModel> model, int kkal,
+            List<dynamic>? trainignData, bool showTraining)?
         loaded,
     TResult Function(String message)? error,
     required TResult orElse(),

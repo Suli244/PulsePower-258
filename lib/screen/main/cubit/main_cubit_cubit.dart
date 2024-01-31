@@ -15,6 +15,7 @@ class MainCubitCubit extends Cubit<MainCubitState> {
   bool showTraining = false;
   List<TrainingModel> model = [];
   List<dynamic>? trainList = [];
+  int kkal = 0;
 
   Future<void> getListPlans() async {
     try {
@@ -41,8 +42,16 @@ class MainCubitCubit extends Cubit<MainCubitState> {
       // if (trainbox.isOpen) {
       //   await trainbox.close();
       // }
+      if (trainList != null && trainList is List<TrainHiveModel>) {
+        for (final e in trainList!) {
+          kkal = kkal + e.calory as int;
+        }
+      }
       emit(MainCubitState.loaded(
-          model: model, trainignData: trainList, showTraining: showTraining));
+          model: model,
+          trainignData: trainList,
+          showTraining: showTraining,
+          kkal: kkal));
     } catch (e) {
       emit(MainCubitState.error(e.toString()));
     }
@@ -51,6 +60,6 @@ class MainCubitCubit extends Cubit<MainCubitState> {
   viewTraining(bool show) {
     showTraining = show;
     emit(MainCubitState.loaded(
-        model: model, trainignData: trainList, showTraining: show));
+        model: model, trainignData: trainList, showTraining: show, kkal: kkal));
   }
 }
