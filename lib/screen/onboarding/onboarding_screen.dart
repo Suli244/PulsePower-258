@@ -117,7 +117,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 currantPage == 2
                     ? TextButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          await FirstOpenPulsePower.setFirstOpen();
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(

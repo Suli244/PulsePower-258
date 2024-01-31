@@ -6,6 +6,7 @@ import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_detail_page.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_model.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
+import 'package:pulsepower_258/utils/premium/first_open.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../training/presentation/child_pages/training_start_page.dart';
@@ -21,9 +22,11 @@ class _MainScreenState extends State<MainScreen> {
   late ScrollController scrollController;
   bool isPrem = true;
   bool viewTraining = false;
+  bool isFires = false;
   isPremis() async {
     final prefs = await SharedPreferences.getInstance();
     isPrem = prefs.getBool('ISBUY') ?? false;
+    isFires = await FirstOpenPulsePower.getFirstOpen();
     setState(() {});
   }
 
@@ -66,8 +69,8 @@ class _MainScreenState extends State<MainScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 12),
-                  const Text("Welcome!",
-                      style: TextStyle(
+                  Text(isFires ? 'Welcome back!' : "Welcome!",
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
                           color: Colors.white)),
