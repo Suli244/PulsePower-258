@@ -16,11 +16,15 @@ class TrainHiveModel extends HiveObject {
   @HiveField(3)
   int index;
 
+  @HiveField(4)
+  String image;
+
   TrainHiveModel({
     required this.calory,
     required this.date,
     required this.title,
     required this.index,
+    required this.image,
   });
 
   @override

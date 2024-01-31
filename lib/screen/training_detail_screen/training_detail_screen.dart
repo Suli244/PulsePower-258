@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_detail_page.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/hive_model/train_hive_model.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_model.dart';
@@ -412,7 +414,16 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                             date: date,
                             title: widget.title,
                             index: widget.index,
+                            image: widget.mainImage,
                           ),
+                        );
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) =>
+                                const AppbarBottomNavigatorScreen(),
+                          ),
+                          (route) => false,
                         );
                       },
                       child: Container(
@@ -452,7 +463,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
               onClosing: () {},
               builder: (context) => Container(
                 padding: const EdgeInsets.symmetric(horizontal: 17),
-                height: 470.h,
+                height: 480.h,
                 width: double.infinity.w,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
@@ -538,6 +549,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                             Flexible(
                               child: Text(
                                 widget.model.exerciseList[index].description,
+                                maxLines: 3,
                                 style: TextStyle(
                                   fontFamily: 'Bai Jamjuree',
                                   fontSize: 20.h,
@@ -575,7 +587,16 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                             date: date,
                             title: widget.title,
                             index: widget.index,
+                            image: widget.mainImage,
                           ),
+                        );
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) =>
+                                const AppbarBottomNavigatorScreen(),
+                          ),
+                          (route) => false,
                         );
                       },
                       child: Container(

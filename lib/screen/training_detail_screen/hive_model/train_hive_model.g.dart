@@ -21,13 +21,14 @@ class TrainHiveModelAdapter extends TypeAdapter<TrainHiveModel> {
       date: fields[1] as String,
       title: fields[2] as String,
       index: fields[3] as int,
+      image: fields[4] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, TrainHiveModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.calory)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class TrainHiveModelAdapter extends TypeAdapter<TrainHiveModel> {
       ..writeByte(2)
       ..write(obj.title)
       ..writeByte(3)
-      ..write(obj.index);
+      ..write(obj.index)
+      ..writeByte(4)
+      ..write(obj.image);
   }
 
   @override
