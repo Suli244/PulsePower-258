@@ -96,7 +96,7 @@ class _MainScreenState extends State<MainScreen> {
                         children: [
                           Container(
                             width: MediaQuery.of(context).size.width - 54,
-                            height: 56,
+                            // height: 56,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color:
@@ -134,7 +134,7 @@ class _MainScreenState extends State<MainScreen> {
                           const SizedBox(height: 6),
                           Container(
                             width: MediaQuery.of(context).size.width - 54,
-                            height: 56,
+                            // height: 56,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color:
@@ -626,83 +626,97 @@ class _TrainingPlaneState extends State<TrainingPlane> {
               horizontal: 8,
               vertical: 8,
             ),
-            height: (MediaQuery.of(context).size.width - 44) / 2,
-            child: Row(
+            // height: (MediaQuery.of(context).size.width - 44) / 2,
+            child: Stack(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: Colors.red,
-                    border: Border.all(
-                      width: 1.5,
-                      color: Colors.white,
+                Row(
+                  children: [
+                    SizedBox(
+                      width: (MediaQuery.of(context).size.width - 60) / 2,
                     ),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        widget.model.mainImage,
+                    const SizedBox(width: 8),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TrainingPlaneItemWIdget(
+                          title: widget.trainModel.totalTime.toString(),
+                          desc: 'Min',
+                        ),
+                        const SizedBox(height: 6),
+                        TrainingPlaneItemWIdget(
+                          title: widget.trainModel.kkall.toString(),
+                          desc: 'Kcal',
+                        ),
+                        const SizedBox(height: 6),
+                        TrainingPlaneItemWIdget(
+                          title: widget.trainModel.exerciseCount.toString(),
+                          desc: 'Exercises',
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.red,
+                      border: Border.all(
+                        width: 1.5,
+                        color: Colors.white,
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.fitHeight,
+                        image: NetworkImage(
+                          widget.model.mainImage,
+                        ),
+                      ),
+                    ),
+                    // height: (MediaQuery.of(context).size.width - 60) / 2,
+                    width: (MediaQuery.of(context).size.width - 60) / 2,
+                    alignment: Alignment.center,
+                    child: FittedBox(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          widget.trainModel.isPremium && !isPrem
+                              ? Image.asset(
+                                  AppImages.lockIcon,
+                                  scale: 4,
+                                )
+                              : Text(
+                                  widget.model.title,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontFamily: 'Bai Jamjuree',
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: -0.33,
+                                  ),
+                                ),
+                          Text(
+                            widget.trainModel.isPremium && !isPrem
+                                ? 'Premium'
+                                : widget.index.toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: widget.trainModel.isPremium && !isPrem
+                                  ? 20
+                                  : 50,
+                              fontFamily: 'Bai Jamjuree',
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: -0.33,
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
-                  height: (MediaQuery.of(context).size.width - 60) / 2,
-                  width: (MediaQuery.of(context).size.width - 60) / 2,
-                  alignment: Alignment.center,
-                  child: FittedBox(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        widget.trainModel.isPremium && !isPrem
-                            ? Image.asset(
-                                AppImages.lockIcon,
-                                scale: 4,
-                              )
-                            : Text(
-                                widget.model.title,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontFamily: 'Bai Jamjuree',
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: -0.33,
-                                ),
-                              ),
-                        Text(
-                          widget.trainModel.isPremium && !isPrem
-                              ? 'Premium'
-                              : widget.index.toString(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: widget.trainModel.isPremium && !isPrem
-                                ? 20
-                                : 50,
-                            fontFamily: 'Bai Jamjuree',
-                            fontWeight: FontWeight.w400,
-                            letterSpacing: -0.33,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                 ),
-                const SizedBox(width: 8),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    TrainingPlaneItemWIdget(
-                      title: widget.trainModel.totalTime.toString(),
-                      desc: 'Min',
-                    ),
-                    TrainingPlaneItemWIdget(
-                      title: widget.trainModel.kkall.toString(),
-                      desc: 'Kcal',
-                    ),
-                    TrainingPlaneItemWIdget(
-                      title: widget.trainModel.exerciseCount.toString(),
-                      desc: 'Exercises',
-                    ),
-                  ],
-                )
               ],
             ),
           )
