@@ -499,7 +499,7 @@ class _MainScreenState extends State<MainScreen> {
                     const SizedBox(height: 16),
                   if (trainingData != null && trainingData.isNotEmpty && isPrem)
                     SettingsIitemWidget(
-                      title: 'View more',
+                      title: show ? 'Page up' : 'View more',
                       onTap: () async {
                         if (show) {
                           scrollController.animateTo(0,
