@@ -246,10 +246,10 @@ class _DetailBodyWidgetState extends State<DetailBodyWidget> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       color: Colors.red,
-                      border: Border.all(
-                        width: 1.5,
-                        color: Colors.white,
-                      ),
+                      // border: Border.all(
+                      //   width: 1.5,
+                      //   color: Colors.white,
+                      // ),
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(

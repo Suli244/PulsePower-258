@@ -381,7 +381,7 @@ class _MainScreenState extends State<MainScreen> {
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
                                     image: NetworkImage(
-                                      model[index].mainImage,
+                                      trainingData[index].image,
                                     ),
                                   ),
                                 ),
@@ -394,40 +394,22 @@ class _MainScreenState extends State<MainScreen> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      model[index]
-                                                  .trainingPlans[index]
-                                                  .isPremium &&
-                                              !isPrem
-                                          ? Image.asset(
-                                              AppImages.lockIcon,
-                                              scale: 4,
-                                            )
-                                          : Text(
-                                              model[index].title,
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 14,
-                                                fontFamily: 'Bai Jamjuree',
-                                                fontWeight: FontWeight.w400,
-                                                letterSpacing: -0.33,
-                                              ),
-                                            ),
                                       Text(
-                                        model[index]
-                                                    .trainingPlans[index]
-                                                    .isPremium &&
-                                                !isPrem
-                                            ? 'Premium'
-                                            : index.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        trainingData[index].title,
+                                        style: const TextStyle(
                                           color: Colors.white,
-                                          fontSize: model[index]
-                                                      .trainingPlans[index]
-                                                      .isPremium &&
-                                                  !isPrem
-                                              ? 14
-                                              : 14,
+                                          fontSize: 14,
+                                          fontFamily: 'Bai Jamjuree',
+                                          fontWeight: FontWeight.w400,
+                                          letterSpacing: -0.33,
+                                        ),
+                                      ),
+                                      Text(
+                                        trainingData[index].index.toString(),
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
                                           fontFamily: 'Bai Jamjuree',
                                           fontWeight: FontWeight.w400,
                                           letterSpacing: -0.33,

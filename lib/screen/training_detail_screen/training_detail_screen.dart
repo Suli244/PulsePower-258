@@ -360,23 +360,23 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 17),
                 height: 250.h,
                 width: double.infinity.w,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(19),
                     topRight: Radius.circular(19),
                   ),
                   color: AppColorsPulsePower.color272727,
-                  border: Border(
-                    top: BorderSide(
-                      color: Colors.white.withOpacity(0.50),
-                    ),
-                    left: BorderSide(
-                      color: Colors.white.withOpacity(0.50),
-                    ),
-                    right: BorderSide(
-                      color: Colors.white.withOpacity(0.50),
-                    ),
-                  ),
+                  // border: Border(
+                  //   top: BorderSide(
+                  //     color: Colors.white.withOpacity(0.50),
+                  //   ),
+                  //   left: BorderSide(
+                  //     color: Colors.white.withOpacity(0.50),
+                  //   ),
+                  //   right: BorderSide(
+                  //     color: Colors.white.withOpacity(0.50),
+                  //   ),
+                  // ),
                 ),
                 child: Column(
                   children: [
@@ -465,23 +465,23 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 17),
                 height: 480.h,
                 width: double.infinity.w,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(19),
                     topRight: Radius.circular(19),
                   ),
                   color: AppColorsPulsePower.color272727,
-                  border: Border(
-                    top: BorderSide(
-                      color: Colors.white.withOpacity(0.50),
-                    ),
-                    left: BorderSide(
-                      color: Colors.white.withOpacity(0.50),
-                    ),
-                    right: BorderSide(
-                      color: Colors.white.withOpacity(0.50),
-                    ),
-                  ),
+                  // border: Border(
+                  //   top: BorderSide(
+                  //     color: Colors.white.withOpacity(0.50),
+                  //   ),
+                  //   left: BorderSide(
+                  //     color: Colors.white.withOpacity(0.50),
+                  //   ),
+                  //   right: BorderSide(
+                  //     color: Colors.white.withOpacity(0.50),
+                  //   ),
+                  // ),
                 ),
                 child: Column(
                   children: [
