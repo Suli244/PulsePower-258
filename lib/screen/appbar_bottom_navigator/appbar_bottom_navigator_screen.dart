@@ -6,7 +6,6 @@ import 'package:pulsepower_258/screen/settings/settings_screen.dart';
 import 'package:pulsepower_258/screen/training/presentation/cubit/training_cubit.dart';
 import 'package:pulsepower_258/screen/training/presentation/pages/training_page.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
-import 'package:pulsepower_258/style/app_text_styles.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
 
 class AppbarBottomNavigatorScreen extends StatefulWidget {
@@ -59,11 +58,13 @@ class _AppbarBottomNavigatorScreenState
                                 SizedBox(height: 3.h),
                                 Text(
                                   'main',
-                                  style: AppTextStylesPulsePower.s15W400(
-                                    color: index == 0
-                                        ? AppColorsPulsePower.colorD479FF
-                                        : Colors.white,
-                                  ),
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                      color: index == 0
+                                          ? AppColorsPulsePower.colorD479FF
+                                          : Colors.white,
+                                      fontFamily: 'BaiJamjuree-Regular'),
                                 ),
                               ],
                             ),
@@ -87,11 +88,13 @@ class _AppbarBottomNavigatorScreenState
                                 SizedBox(height: 3.h),
                                 Text(
                                   'Training',
-                                  style: AppTextStylesPulsePower.s15W400(
-                                    color: index == 1
-                                        ? AppColorsPulsePower.colorD479FF
-                                        : Colors.white,
-                                  ),
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                      color: index == 0
+                                          ? AppColorsPulsePower.colorD479FF
+                                          : Colors.white,
+                                      fontFamily: 'BaiJamjuree-Regular'),
                                 ),
                               ],
                             ),
@@ -115,11 +118,13 @@ class _AppbarBottomNavigatorScreenState
                                 SizedBox(height: 3.h),
                                 Text(
                                   'Settings',
-                                  style: AppTextStylesPulsePower.s15W400(
-                                    color: index == 2
-                                        ? AppColorsPulsePower.colorD479FF
-                                        : Colors.white,
-                                  ),
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                      color: index == 0
+                                          ? AppColorsPulsePower.colorD479FF
+                                          : Colors.white,
+                                      fontFamily: 'BaiJamjuree-Regular'),
                                 ),
                               ],
                             ),

@@ -5,8 +5,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/hive_model/train_hive_model.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_model.dart';
 
-part 'main_cubit_state.dart';
 part 'main_cubit_cubit.freezed.dart';
+part 'main_cubit_state.dart';
 
 class MainCubitCubit extends Cubit<MainCubitState> {
   MainCubitCubit() : super(const MainCubitState.loading());
@@ -20,10 +20,10 @@ class MainCubitCubit extends Cubit<MainCubitState> {
   Future<void> getListPlans() async {
     try {
       emit(const MainCubitState.loading());
-      final result = await dio.get(
+      final trainResult = await dio.get(
           'https://pulsepower-258-default-rtdb.firebaseio.com/trainings.json?auth=AIzaSyD24P-ebB1eOd-43qHV04I0ZPb_8CPXJQE');
 
-      model = result.data.map<TrainingModel>(
+      model = trainResult.data.map<TrainingModel>(
         (e) {
           return TrainingModel.fromJson(e);
         },

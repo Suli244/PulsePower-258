@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
-import 'package:pulsepower_258/style/app_text_styles.dart';
 
 class SettingsIitemWidget extends StatelessWidget {
   const SettingsIitemWidget({
@@ -39,7 +38,12 @@ class SettingsIitemWidget extends StatelessWidget {
           child: FittedBox(
             child: Text(
               title,
-              style: AppTextStylesPulsePower.s21W300(color: Colors.white),
+              style: const TextStyle(
+                fontSize: 21,
+                fontWeight: FontWeight.w300,
+                color: Colors.white,
+                fontFamily: 'BaiJamjuree-Regular',
+              ),
               overflow: TextOverflow.ellipsis,
             ),
           ),

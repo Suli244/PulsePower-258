@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
 import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
-import 'package:pulsepower_258/style/app_text_styles.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
 import 'package:pulsepower_258/utils/premium/premium.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -62,9 +61,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             padding: EdgeInsets.only(left: 17.w, right: 17.w, top: 11.h),
             child: Column(
               children: [
-                Text(
+                const Text(
                   'FlowOn workout',
-                  style: AppTextStylesPulsePower.s19W300(color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white,
+                    fontFamily: 'BaiJamjuree-Regular',
+                  ),
                 ),
                 SizedBox(height: 5.h),
                 const Divider(
@@ -75,7 +79,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 FittedBox(
                   child: Text(
                     titleIndex[currantPage],
-                    style: AppTextStylesPulsePower.s21W300(color: Colors.white),
+                    style: const TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                      fontFamily: 'BaiJamjuree-Regular',
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -125,10 +134,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             (route) => false,
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           'Think about it later',
-                          style: AppTextStylesPulsePower.s21W300(
-                              color: Colors.white),
+                          style: TextStyle(
+                            fontSize: 21,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white,
+                            fontFamily: 'BaiJamjuree-Regular',
+                          ),
                         ),
                       )
                     : Opacity(
@@ -145,10 +158,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 (route) => false,
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Think about it later',
-                              style: AppTextStylesPulsePower.s21W300(
-                                  color: Colors.white),
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white,
+                                fontFamily: 'BaiJamjuree-Regular',
+                              ),
                             ),
                           ),
                         ),

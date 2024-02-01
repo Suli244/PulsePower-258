@@ -26,10 +26,10 @@ class _MainScreenState extends State<MainScreen> {
   isPremis() async {
     final prefs = await SharedPreferences.getInstance();
     isPrem = prefs.getBool('ISBUY') ?? false;
-    isFires = await FirstOpenPulsePower.getFirstOpen();
+    isFires = await FirstOpenPulsePower.getFO();
     setState(() {});
     if (!isFires) {
-      FirstOpenPulsePower.setFirstOpen();
+      FirstOpenPulsePower.setFO();
     }
   }
 

@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   toGoOnBoar() async {
     await Future.delayed(const Duration(milliseconds: 1450));
-    final isFirst = await FirstOpenPulsePower.getFirstOpen();
+    final isFirst = await FirstOpenPulsePower.getFO();
     if (!isFirst) {
       Navigator.pushReplacement(
         context,

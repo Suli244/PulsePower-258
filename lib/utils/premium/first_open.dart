@@ -1,12 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FirstOpenPulsePower {
-  static Future<bool> getFirstOpen() async {
+  static Future<bool> getFO() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool('isOpened') ?? false;
   }
 
-  static Future<void> setFirstOpen() async {
+  static Future<void> setFO() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool('isOpened', true);
   }

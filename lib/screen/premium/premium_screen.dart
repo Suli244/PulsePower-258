@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
 import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
-import 'package:pulsepower_258/style/app_text_styles.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,9 +42,14 @@ class PremiumScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 17.w, right: 17.w, top: 11.h),
             child: Column(
               children: [
-                Text(
+                const Text(
                   'FlowOn workout',
-                  style: AppTextStylesPulsePower.s19W300(color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white,
+                    fontFamily: 'BaiJamjuree-Regular',
+                  ),
                 ),
                 SizedBox(height: 8.h),
                 const Divider(
@@ -53,10 +57,15 @@ class PremiumScreen extends StatelessWidget {
                   color: AppColorsPulsePower.color696969,
                 ),
                 SizedBox(height: 10.h),
-                FittedBox(
+                const FittedBox(
                   child: Text(
                     'Premium will open access to all the\nfunctions of the application - more\nworkouts, more pounds lost',
-                    style: AppTextStylesPulsePower.s20W300(color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                      fontFamily: 'BaiJamjuree-Regular',
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -81,9 +90,14 @@ class PremiumScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text(
+                  child: const Text(
                     'Think about it later',
-                    style: AppTextStylesPulsePower.s21W300(color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                      fontFamily: 'BaiJamjuree-Regular',
+                    ),
                   ),
                 ),
                 SizedBox(height: 20.h),
@@ -123,11 +137,14 @@ class PremiumScreen extends StatelessWidget {
                   height: 33.h,
                 ),
                 const SizedBox(width: 5),
-                FittedBox(
+                const FittedBox(
                   child: Text(
                     'PREMIUM ACCOUNT',
-                    style: AppTextStylesPulsePower.s22W300(
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w300,
                       color: AppColorsPulsePower.colorD479FF,
+                      fontFamily: 'BaiJamjuree-Regular',
                     ),
                   ),
                 ),
@@ -143,33 +160,45 @@ class PremiumScreen extends StatelessWidget {
             SizedBox(height: 44.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 14.w),
-              child: Column(
+              child: const Column(
                 children: [
                   FittedBox(
                     child: Text(
                       'Saving your training history for up to a month',
-                      style:
-                          AppTextStylesPulsePower.s145W400(color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 14.7,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                        fontFamily: 'BaiJamjuree-Regular',
+                      ),
                     ),
                   ),
-                  const Divider(
+                  Divider(
                     color: AppColorsPulsePower.color696969,
                   ),
                   FittedBox(
                     child: Text(
                       'All content that includes more effective workouts',
-                      style:
-                          AppTextStylesPulsePower.s145W400(color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 14.7,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                        fontFamily: 'BaiJamjuree-Regular',
+                      ),
                     ),
                   ),
-                  const Divider(
+                  Divider(
                     color: AppColorsPulsePower.color696969,
                   ),
                   FittedBox(
                     child: Text(
                       'No advertising at all',
-                      style:
-                          AppTextStylesPulsePower.s145W400(color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 14.7,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                        fontFamily: 'BaiJamjuree-Regular',
+                      ),
                     ),
                   ),
                 ],
