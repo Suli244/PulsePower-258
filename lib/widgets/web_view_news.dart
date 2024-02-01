@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebPulsePower extends StatefulWidget {
-  final String url;
   final String title;
+  final String url;
 
   const WebPulsePower({
     Key? key,
-    required this.title,
     required this.url,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -30,10 +30,15 @@ class _WebBlueScopeNewsState extends State<WebPulsePower> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SizedBox(
-        height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
             Expanded(

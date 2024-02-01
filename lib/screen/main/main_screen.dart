@@ -28,6 +28,9 @@ class _MainScreenState extends State<MainScreen> {
     isPrem = prefs.getBool('ISBUY') ?? false;
     isFires = await FirstOpenPulsePower.getFirstOpen();
     setState(() {});
+    if (!isFires) {
+      FirstOpenPulsePower.setFirstOpen();
+    }
   }
 
   @override
@@ -69,11 +72,14 @@ class _MainScreenState extends State<MainScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 12),
-                  Text(isFires ? 'Welcome back!' : "Welcome!",
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white)),
+                  Text(
+                    isFires ? 'Welcome back!' : "Welcome!",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white,
+                    ),
+                  ),
                   const SizedBox(height: 6),
                   Container(
                     padding: const EdgeInsets.all(1),

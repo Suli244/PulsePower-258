@@ -1,3 +1,4 @@
+import 'package:apphud/apphud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +10,7 @@ import 'package:pulsepower_258/style/app_colors.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await Apphud.start(apiKey: 'app_rhzmE4MhRQgHNZmn6RXBb48SZ4wzNn');
   await Hive.initFlutter();
   Hive.registerAdapter(TrainHiveModelAdapter());
   runApp(const MyApp());

@@ -5,7 +5,6 @@ import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart
 import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:pulsepower_258/style/app_text_styles.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
-import 'package:pulsepower_258/utils/premium/first_open.dart';
 import 'package:pulsepower_258/utils/premium/premium.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -97,7 +96,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       currantPage == 2 ? 'Buy Premium for 0.99\$' : 'Continue',
                   onTap: () async {
                     if (currantPage == 2) {
-                      await FirstOpenPulsePower.setFirstOpen();
                       await PremiumWebPulsePower.setPremium();
                       Navigator.pushAndRemoveUntil(
                         context,
@@ -118,7 +116,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 currantPage == 2
                     ? TextButton(
                         onPressed: () async {
-                          await FirstOpenPulsePower.setFirstOpen();
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(

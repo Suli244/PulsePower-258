@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/premium/premium_screen.dart';
 import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
-import 'package:pulsepower_258/utils/urls.dart';
 import 'package:pulsepower_258/widgets/web_view_news.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -73,8 +72,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const WebPulsePower(
+                      url:
+                          'https://docs.google.com/document/d/1wJhYMuzMsdypR3qB8WK3--8hocAtkUm7tH07sWyOWXs/edit?usp=sharing',
                       title: 'Privacy policy',
-                      url: DocFFPulsePower.pP,
                     ),
                   ),
                 );
@@ -87,15 +87,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const WebPulsePower(
+                      url:
+                          'https://docs.google.com/document/d/1jFiBEmElZo3adgIeNXbBenNGPYCpYX3OSqxhYGe9Q0o/edit?usp=sharing',
                       title: 'Terms of use',
-                      url: DocFFPulsePower.tUse,
                     ),
                   ),
                 );
               },
               top: 20.h,
             ),
-            SettingsIitemWidget(title: 'Support', onTap: () {}, top: 20.h),
+            SettingsIitemWidget(
+              title: 'Support',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const WebPulsePower(
+                      title: 'Terms of use',
+                      url: 'https://forms.gle/ncosJHVoEoZpHyXg8',
+                    ),
+                  ),
+                );
+              },
+              top: 20.h,
+            ),
             SizedBox(height: 60.h),
           ],
         ),
