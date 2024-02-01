@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/main/main_screen.dart';
-import 'package:pulsepower_258/screen/settings/settings_screen.dart';
+import 'package:pulsepower_258/screen/settings/s_screen.dart';
 import 'package:pulsepower_258/screen/training/presentation/cubit/training_cubit.dart';
 import 'package:pulsepower_258/screen/training/presentation/pages/training_page.dart';
 import 'package:pulsepower_258/style/app_colors.dart';

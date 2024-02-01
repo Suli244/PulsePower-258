@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
-import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
+import 'package:pulsepower_258/screen/settings/widget/s_iitem_widget.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
 import 'package:pulsepower_258/utils/premium/premium.dart';

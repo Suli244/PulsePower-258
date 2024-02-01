@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pulsepower_258/screen/splash/splash_screen.dart';
+import 'package:pulsepower_258/screen/splash/sp_screen.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/hive_model/train_hive_model.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pulsepower_258/screen/settings/widget/settings_iitem_widget.dart';
+import 'package:pulsepower_258/screen/settings/widget/s_iitem_widget.dart';
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_start_page.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_model.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
