@@ -1,5 +1,8 @@
+import 'package:apphud/apphud.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
 import 'package:pulsepower_258/screen/premium/premium_screen.dart';
 import 'package:pulsepower_258/screen/settings/widget/s_iitem_widget.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
@@ -64,6 +67,61 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                     setState(() {});
                   }),
+            if (!premium) SizedBox(height: 17.h),
+            if (!premium)
+              SettingsIitemWidget(
+                title: 'Restore',
+                onTap: () async {
+                  final hasPremiumAccess = await Apphud.hasPremiumAccess();
+                  final hasActiveSubscription =
+                      await Apphud.hasActiveSubscription();
+                  if (hasPremiumAccess || hasActiveSubscription) {
+                    final prefs = await SharedPreferences.getInstance();
+                    prefs.setBool('ISBUY', true);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        title: const Text('Success!'),
+                        content: const Text('Your purchase has been restored!'),
+                        actions: [
+                          CupertinoDialogAction(
+                            isDefaultAction: true,
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) =>
+                                      const AppbarBottomNavigatorScreen(),
+                                ),
+                                (route) => false,
+                              );
+                            },
+                            child: const Text('Ok'),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        title: const Text('Restore purchase'),
+                        content: const Text(
+                            'Your purchase is not found. Write to support: https://forms.gle/ncosJHVoEoZpHyXg8'),
+                        actions: [
+                          CupertinoDialogAction(
+                            isDefaultAction: true,
+                            onPressed: () => {Navigator.of(context).pop()},
+                            child: const Text('Ok'),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                },
+              ),
+            if (!premium) SizedBox(height: 17.h),
             if (!premium) const Spacer(),
             SettingsIitemWidget(
               title: 'Privacy Policy',
