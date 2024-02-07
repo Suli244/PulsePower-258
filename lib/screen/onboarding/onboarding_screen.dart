@@ -1,10 +1,12 @@
+import 'package:apphud/apphud.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
 import 'package:pulsepower_258/screen/settings/widget/s_iitem_widget.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
-import 'package:pulsepower_258/utils/premium/premium.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -29,6 +31,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     'You can train the whole body at\nonce or choose any section you are \ninterested in',
     'Premium will open access to all the\nfunctions of the application - more\nworkouts, more pounds lost',
   ];
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -101,19 +105,90 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 SizedBox(height: 23.h),
                 SettingsIitemWidget(
+                  isLoading: isLoading,
                   title:
                       currantPage == 2 ? 'Buy Premium for 0.99\$' : 'Continue',
                   onTap: () async {
                     if (currantPage == 2) {
-                      await PremiumWebPulsePower.setPremium();
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const AppbarBottomNavigatorScreen(),
-                        ),
-                        (route) => false,
+                      setState(() {
+                        isLoading = true;
+                      });
+                      final apphudPaywalls = await Apphud.paywalls();
+                      print(apphudPaywalls);
+
+                      await Apphud.purchase(
+                        product: apphudPaywalls?.paywalls.first.products?.first,
+                      ).whenComplete(
+                        () async {
+                          if (await Apphud.hasPremiumAccess() ||
+                              await Apphud.hasActiveSubscription()) {
+                            final hasPremiumAccess =
+                                await Apphud.hasPremiumAccess();
+                            final hasActiveSubscription =
+                                await Apphud.hasActiveSubscription();
+                            if (hasPremiumAccess || hasActiveSubscription) {
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setBool('ISBUY', true);
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    CupertinoAlertDialog(
+                                  title: const Text('Success!'),
+                                  content: const Text(
+                                      'Your purchase has been restored!'),
+                                  actions: [
+                                    CupertinoDialogAction(
+                                      isDefaultAction: true,
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) =>
+                                                const AppbarBottomNavigatorScreen(),
+                                          ),
+                                          (route) => false,
+                                        );
+                                      },
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    CupertinoAlertDialog(
+                                  title: const Text('Restore purchase'),
+                                  content: const Text(
+                                      'Your purchase is not found. Write to support: https://docs.google.com/forms/d/e/1FAIpQLSe2dY5sixywVpTYU9K34aEqYi67rDquTx9XMeDZWeU2de_rag/viewform?usp=sf_link'),
+                                  actions: [
+                                    CupertinoDialogAction(
+                                      isDefaultAction: true,
+                                      onPressed: () =>
+                                          {Navigator.of(context).pop()},
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    const AppbarBottomNavigatorScreen(),
+                              ),
+                              (route) => false,
+                            );
+                          }
+                        },
                       );
+                      setState(() {
+                        isLoading = false;
+                      });
                     } else {
                       controller.nextPage(
                         duration: const Duration(milliseconds: 300),

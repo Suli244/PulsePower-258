@@ -7,11 +7,13 @@ class SettingsIitemWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.onTap,
+    this.isLoading = false,
     this.top,
   });
   final String title;
   final Function() onTap;
   final double? top;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +37,20 @@ class SettingsIitemWidget extends StatelessWidget {
             ),
           ),
           alignment: Alignment.center,
-          child: FittedBox(
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 21,
-                fontWeight: FontWeight.w300,
-                color: Colors.white,
-                fontFamily: 'BaiJamjuree-Regular',
-              ),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
+          child: isLoading
+              ? const CircularProgressIndicator.adaptive()
+              : FittedBox(
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                      fontFamily: 'BaiJamjuree-Regular',
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
         ),
       ),
     );

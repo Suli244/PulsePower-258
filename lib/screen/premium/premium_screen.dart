@@ -1,3 +1,4 @@
+import 'package:apphud/apphud.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,9 +8,15 @@ import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:pulsepower_258/utils/image/app_images.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PremiumScreen extends StatelessWidget {
+class PremiumScreen extends StatefulWidget {
   const PremiumScreen({super.key});
 
+  @override
+  State<PremiumScreen> createState() => _PremiumScreenState();
+}
+
+class _PremiumScreenState extends State<PremiumScreen> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,18 +78,87 @@ class PremiumScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 SettingsIitemWidget(
+                  isLoading: isLoading,
                   title: 'Buy Premium for 0.99\$',
                   onTap: () async {
-                    final prefs = await SharedPreferences.getInstance();
-                    prefs.setBool('ISBUY', true);
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) =>
-                            const AppbarBottomNavigatorScreen(),
-                      ),
-                      (route) => false,
+                    setState(() {
+                      isLoading = true;
+                    });
+                    final apphudPaywalls = await Apphud.paywalls();
+                    print(apphudPaywalls);
+
+                    await Apphud.purchase(
+                      product: apphudPaywalls?.paywalls.first.products?.first,
+                    ).whenComplete(
+                      () async {
+                        if (await Apphud.hasPremiumAccess() ||
+                            await Apphud.hasActiveSubscription()) {
+                          final hasPremiumAccess =
+                              await Apphud.hasPremiumAccess();
+                          final hasActiveSubscription =
+                              await Apphud.hasActiveSubscription();
+                          if (hasPremiumAccess || hasActiveSubscription) {
+                            final prefs = await SharedPreferences.getInstance();
+                            prefs.setBool('ISBUY', true);
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  CupertinoAlertDialog(
+                                title: const Text('Success!'),
+                                content: const Text(
+                                    'Your purchase has been restored!'),
+                                actions: [
+                                  CupertinoDialogAction(
+                                    isDefaultAction: true,
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) =>
+                                              const AppbarBottomNavigatorScreen(),
+                                        ),
+                                        (route) => false,
+                                      );
+                                    },
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  CupertinoAlertDialog(
+                                title: const Text('Restore purchase'),
+                                content: const Text(
+                                    'Your purchase is not found. Write to support: https://docs.google.com/forms/d/e/1FAIpQLSe2dY5sixywVpTYU9K34aEqYi67rDquTx9XMeDZWeU2de_rag/viewform?usp=sf_link'),
+                                actions: [
+                                  CupertinoDialogAction(
+                                    isDefaultAction: true,
+                                    onPressed: () =>
+                                        {Navigator.of(context).pop()},
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) =>
+                                  const AppbarBottomNavigatorScreen(),
+                            ),
+                            (route) => false,
+                          );
+                        }
+                      },
                     );
+                    setState(() {
+                      isLoading = false;
+                    });
                   },
                 ),
                 SizedBox(height: 9.h),
