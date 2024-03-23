@@ -28,7 +28,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   List<String> titleIndex = [
     'Welcome to the workout app. Work\nout, lose weight and get better!',
-    'You can train the whole body at\nonce or choose any section you are \ninterested in',
+    'You can training the whole body at\nonce or choose any section you are \ninterested in',
     'Premium will open access to all the\nfunctions of the application - more\nworkouts, more pounds lost',
   ];
 

@@ -167,7 +167,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
         phaseText = 'READY?';
         break;
       case 1:
-        phaseText = 'TRAIN!';
+        phaseText = 'TRAINING!';
         break;
       case 2:
         phaseText = 'REST';
@@ -313,7 +313,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                                         fontFamily: 'Bai Jamjuree',
                                         fontSize: 30.h,
                                         fontWeight: FontWeight.w400,
-                                        color: phaseText == 'TRAIN!'
+                                        color: phaseText == 'TRAINING!'
                                             ? const Color(0xffD479FF)
                                             : Colors.white,
                                       ),
@@ -327,7 +327,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                                         color: const Color(0x9E1D1D1D),
                                         borderRadius: BorderRadius.circular(8),
                                         border: Border.all(
-                                          color: phaseText == 'TRAIN!'
+                                          color: phaseText == 'TRAINING!'
                                               ? const Color(0xffD479FF)
                                               : Colors.white.withOpacity(0.52),
                                         ),
@@ -442,7 +442,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                           ),
                         ),
                         child: Text(
-                          'End train',
+                          'End training',
                           style: TextStyle(
                             fontFamily: 'Bai Jamjuree',
                             fontSize: 22.h,
@@ -490,7 +490,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Круг ',
+                          'Round ',
                           style: TextStyle(
                             fontFamily: 'Bai Jamjuree',
                             fontSize: 20.h,
@@ -615,7 +615,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                           ),
                         ),
                         child: Text(
-                          'End train',
+                          'End training',
                           style: TextStyle(
                             fontFamily: 'Bai Jamjuree',
                             fontSize: 22.h,

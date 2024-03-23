@@ -29,8 +29,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     getPremium();
     return Container(
-      width: double.infinity.w,
-      height: double.infinity.h,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
@@ -39,7 +39,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-      child: Padding(
+      child: SingleChildScrollView(
         padding: EdgeInsets.only(top: 20.h, left: 19.w, right: 19.w),
         child: Column(
           children: [
@@ -122,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
             if (!premium) SizedBox(height: 17.h),
-            if (!premium) const Spacer(),
+            // if (!premium) const Spacer(),
             SettingsIitemWidget(
               title: 'Privacy Policy',
               onTap: () {

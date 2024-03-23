@@ -283,7 +283,7 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
     if (index + 1 == 1) {
       customValue.value = 'Start training';
     } else if (index + 1 == widget.detailModel.trainModel.exerciseCount) {
-      customValue.value = 'End train';
+      customValue.value = 'End training';
     } else {
       customValue.value = 'Next';
     }
