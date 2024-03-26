@@ -213,31 +213,33 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       child: Container(
-                          width: double.infinity,
-                          height: 121,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            image: DecorationImage(
-                              fit: BoxFit.fitWidth,
-                              image: NetworkImage(model.first.mainImage),
-                            ),
-                            // image: s
+                        clipBehavior: Clip.hardEdge,
+                        width: double.infinity,
+                        height: 121,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          image: DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            image: NetworkImage(model.first.mainImage),
                           ),
-                          padding: const EdgeInsets.only(
-                            top: 5,
-                            left: 11,
-                            right: 11,
+                          // image: s
+                        ),
+                        padding: const EdgeInsets.only(
+                          top: 5,
+                          left: 11,
+                          right: 11,
+                        ),
+                        child: const Text(
+                          'Beginner',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'Bai Jamjuree',
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: -0.33,
                           ),
-                          child: const Text(
-                            'Beginner',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: 'Bai Jamjuree',
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: -0.33,
-                            ),
-                          )),
+                        ),
+                      ),
                     ),
                   const SizedBox(height: 11),
                   const Text("Training of the day",
@@ -260,7 +262,7 @@ class _MainScreenState extends State<MainScreen> {
                   SettingsIitemWidget(
                     title: 'View',
                     onTap: () async {
-                      Navigator.push(
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => TrainingStartPage(
@@ -272,6 +274,7 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                         ),
                       );
+                      context.read<MainCubitCubit>().getListPlans();
                     },
                   ),
                   if (trainingData == null || trainingData.isEmpty)

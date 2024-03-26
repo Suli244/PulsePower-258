@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
 import 'package:pulsepower_258/screen/training/presentation/child_pages/training_detail_page.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/hive_model/train_hive_model.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/models_data/train_model.dart';
@@ -417,14 +415,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                             image: widget.mainImage,
                           ),
                         );
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) =>
-                                const AppbarBottomNavigatorScreen(),
-                          ),
-                          (route) => false,
-                        );
+                        Navigator.pop(context);
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -590,14 +581,7 @@ class _TrainingDetailScreenState extends State<TrainingDetailScreen> {
                             image: widget.mainImage,
                           ),
                         );
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) =>
-                                const AppbarBottomNavigatorScreen(),
-                          ),
-                          (route) => false,
-                        );
+                        Navigator.pop(context);
                       },
                       child: Container(
                         alignment: Alignment.center,

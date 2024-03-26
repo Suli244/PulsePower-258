@@ -17,6 +17,44 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  late Image oneImage;
+  late Image twoImage;
+  late Image threeImage;
+
+  @override
+  void initState() {
+    super.initState();
+    oneImage = Image.asset(
+      AppImages.onboardingOne,
+      alignment: Alignment.topCenter,
+      width: double.infinity.w,
+      height: double.infinity.h,
+      fit: BoxFit.cover,
+    );
+    twoImage = Image.asset(
+      AppImages.onboardingTwo,
+      alignment: Alignment.bottomCenter,
+      width: double.infinity.w,
+      height: double.infinity.h,
+      fit: BoxFit.cover,
+    );
+    threeImage = Image.asset(
+      AppImages.onboardingThree,
+      alignment: Alignment.bottomCenter,
+      width: double.infinity.w,
+      height: double.infinity.h,
+      fit: BoxFit.cover,
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(oneImage.image, context);
+    precacheImage(twoImage.image, context);
+    precacheImage(threeImage.image, context);
+  }
+
   final PageController controller = PageController();
   int currantPage = 0;
 
@@ -262,27 +300,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               });
             },
             children: [
-              Image.asset(
-                imageIndex[0],
-                alignment: Alignment.topCenter,
-                width: double.infinity.w,
-                height: double.infinity.h,
-                fit: BoxFit.cover,
-              ),
-              Image.asset(
-                imageIndex[1],
-                alignment: Alignment.bottomCenter,
-                width: double.infinity.w,
-                height: double.infinity.h,
-                fit: BoxFit.cover,
-              ),
-              Image.asset(
-                imageIndex[2],
-                alignment: Alignment.bottomCenter,
-                width: double.infinity.w,
-                height: double.infinity.h,
-                fit: BoxFit.cover,
-              ),
+              oneImage,
+              twoImage,
+              threeImage,
             ],
           ),
           0 < currantPage

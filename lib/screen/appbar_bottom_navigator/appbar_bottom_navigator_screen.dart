@@ -24,129 +24,100 @@ class _AppbarBottomNavigatorScreenState
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TrainingCubit(),
-      child: Scaffold(
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Container(
-                height: 100,
-                color: AppColorsPulsePower.color1C1C1C,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Spacer(),
-                    Center(
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                index = 0;
-                              });
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset(
+      child: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          body: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Container(
+                  height: 100,
+                  color: AppColorsPulsePower.color1C1C1C,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      TabBar(
+                        indicatorColor: Colors.transparent,
+                        dividerColor: Colors.transparent,
+                        unselectedLabelColor: AppColorsPulsePower.colorBCBCBC,
+                        labelColor: AppColorsPulsePower.colorD479FF,
+                        tabs: [
+                          Column(
+                            children: [
+                              const ImageIcon(
+                                AssetImage(
                                   AppImages.mainIcon,
-                                  width: 22.w,
-                                  color: index == 0
-                                      ? AppColorsPulsePower.colorD479FF
-                                      : AppColorsPulsePower.colorBCBCBC,
                                 ),
-                                SizedBox(height: 3.h),
-                                Text(
-                                  'main',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                      color: index == 0
-                                          ? AppColorsPulsePower.colorD479FF
-                                          : Colors.white,
-                                      fontFamily: 'BaiJamjuree-Regular'),
+                              ),
+                              SizedBox(height: 3.h),
+                              const Text(
+                                'main',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'BaiJamjuree-Regular',
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 55.w),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                index = 1;
-                              });
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset(
+                          Column(
+                            children: [
+                              const ImageIcon(
+                                AssetImage(
                                   AppImages.trainingIcon,
-                                  width: 11.50.w,
-                                  color: index == 1
-                                      ? AppColorsPulsePower.colorD479FF
-                                      : AppColorsPulsePower.colorBCBCBC,
                                 ),
-                                SizedBox(height: 3.h),
-                                Text(
-                                  'Training',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                      color: index == 0
-                                          ? AppColorsPulsePower.colorD479FF
-                                          : Colors.white,
-                                      fontFamily: 'BaiJamjuree-Regular'),
+                              ),
+                              SizedBox(height: 3.h),
+                              const Text(
+                                'Training',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'BaiJamjuree-Regular',
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 46.w),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                index = 2;
-                              });
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset(
+                          Column(
+                            children: [
+                              const ImageIcon(
+                                AssetImage(
                                   AppImages.settingsIcon,
-                                  width: 22.w,
-                                  color: index == 2
-                                      ? AppColorsPulsePower.colorD479FF
-                                      : AppColorsPulsePower.colorBCBCBC,
                                 ),
-                                SizedBox(height: 3.h),
-                                Text(
-                                  'Settings',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                      color: index == 0
-                                          ? AppColorsPulsePower.colorD479FF
-                                          : Colors.white,
-                                      fontFamily: 'BaiJamjuree-Regular'),
+                              ),
+                              SizedBox(height: 3.h),
+                              const Text(
+                                'Settings',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'BaiJamjuree-Regular',
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          const Spacer(),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 15),
-                    Container(
-                      width: double.infinity.w,
-                      height: 1,
-                      decoration: const BoxDecoration(color: Color(0xFF090909)),
-                    ),
-                  ],
+                      const SizedBox(height: 15),
+                      Container(
+                        width: double.infinity.w,
+                        height: 1,
+                        decoration:
+                            const BoxDecoration(color: Color(0xFF090909)),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: pages[index],
-            ),
-          ],
+              Expanded(
+                child: TabBarView(
+                  children: pages,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -158,127 +129,3 @@ List<Widget> pages = [
   const TrainingScreen(),
   const SettingsScreen()
 ];
-
-// Container(
-//                 child: Row(
-//                   children: [
-//                     const Spacer(),
-//                     InkWell(
-//                       onTap: () {
-//                         setState(() {
-//                           index = 0;
-//                         });
-//                       },
-//                       child: Column(
-//                         children: [
-//                           Image.asset(
-//                             AppImages.mainIcon,
-//                             width: 22.w,
-//                             color: index == 0
-//                                 ? AppColorsPulsePower.colorD479FF
-//                                 : AppColorsPulsePower.colorBCBCBC,
-//                           ),
-//                           SizedBox(height: 3.h),
-//                           Text(
-//                             'main',
-//                             style: AppTextStylesPulsePower.s15W400(
-//                               color: index == 0
-//                                   ? AppColorsPulsePower.colorD479FF
-//                                   : Colors.white,
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                     SizedBox(width: 65.w),
-//                     InkWell(
-//                       onTap: () {
-//                         setState(() {
-//                           index = 1;
-//                         });
-//                       },
-//                       child: Column(
-//                         children: [
-//                           Image.asset(
-//                             AppImages.trainingIcon,
-//                             width: 11.50.w,
-//                             color: index == 1
-//                                 ? AppColorsPulsePower.colorD479FF
-//                                 : AppColorsPulsePower.colorBCBCBC,
-//                           ),
-//                           SizedBox(height: 3.h),
-//                           Text(
-//                             'Training',
-//                             style: AppTextStylesPulsePower.s15W400(
-//                               color: index == 1
-//                                   ? AppColorsPulsePower.colorD479FF
-//                                   : Colors.white,
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                     SizedBox(width: 55.w),
-//                     InkWell(
-//                       onTap: () {
-//                         setState(() {
-//                           index = 2;
-//                         });
-//                       },
-//                       child: Column(
-//                         children: [
-//                           Image.asset(
-//                             AppImages.settingsIcon,
-//                             width: 22.w,
-//                             color: index == 2
-//                                 ? AppColorsPulsePower.colorD479FF
-//                                 : AppColorsPulsePower.colorBCBCBC,
-//                           ),
-//                           SizedBox(height: 3.h),
-//                           Text(
-//                             'Settings',
-//                             style: AppTextStylesPulsePower.s15W400(
-//                               color: index == 2
-//                                   ? AppColorsPulsePower.colorD479FF
-//                                   : Colors.white,
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                     const Spacer(),
-//                   ],
-//                 ),
-//               ),
-
-
-
-
-
-
-
-
-// Column(
-//                     children: [
-//                       Container(
-//                         width: double.infinity.w,
-//                         height: 1,
-//                         decoration:
-//                             const BoxDecoration(color: Color(0xFF090909)),
-//                       ),
-//                       Opacity(
-//                         opacity: 0.50,
-//                         child: Container(
-//                           width: 390,
-//                           height: 12,
-//                           decoration: const BoxDecoration(
-//                             gradient: LinearGradient(
-//                               begin: Alignment(0.00, -1.00),
-//                               end: Alignment(0, 1),
-//                               colors: [Color(0x000A0A0A), Color(0xFF0F0F0F)],
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                     ],
-//                   ),

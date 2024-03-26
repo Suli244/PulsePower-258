@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pulsepower_258/screen/premium/premium_screen.dart';
@@ -7,6 +8,7 @@ import 'package:pulsepower_258/screen/training/presentation/child_pages/training
 import 'package:pulsepower_258/screen/training_detail_screen/training_detail_screen.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TrainingStartPage extends StatefulWidget {
@@ -181,6 +183,28 @@ class _TrainingStartPageState extends State<TrainingStartPage> {
                             ),
                           ),
                           width: 108.w,
+                          child: CachedNetworkImage(
+                            imageUrl: widget.detailModel.trainModel
+                                .exerciseList[index].image,
+                            placeholder: (_, url) {
+                              return SizedBox(
+                                width: 108.w,
+                                child: Shimmer.fromColors(
+                                  baseColor: Colors.grey.withOpacity(0.4),
+                                  highlightColor: Colors.white,
+                                  child: Container(
+                                    width: 108.w,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: const CircularProgressIndicator
+                                        .adaptive(),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(height: 18.h),
