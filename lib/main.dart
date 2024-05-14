@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pulsepower_258/logic_prem/get_premium/sdfsdf/sdfsdfs.dart';
+import 'package:pulsepower_258/logic_prem/sdgsdg.dart';
 import 'package:pulsepower_258/screen/splash/sp_screen.dart';
 import 'package:pulsepower_258/screen/training_detail_screen/hive_model/train_hive_model.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
@@ -13,7 +15,8 @@ void main() async {
   await Apphud.start(apiKey: 'app_rhzmE4MhRQgHNZmn6RXBb48SZ4wzNn');
   await Hive.initFlutter();
   Hive.registerAdapter(TrainHiveModelAdapter());
-  runApp(const MyApp());
+  Hive.registerAdapter(NewPosterModelAdapter());
+  ghfdsg();
 }
 
 class MyApp extends StatelessWidget {

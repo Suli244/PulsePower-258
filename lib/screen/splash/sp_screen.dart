@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:pulsepower_258/screen/appbar_bottom_navigator/appbar_bottom_navigator_screen.dart';
 import 'package:pulsepower_258/screen/onboarding/onboarding_screen.dart';
 import 'package:pulsepower_258/style/app_colors.dart';
@@ -57,14 +56,6 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       );
       await Future.delayed(const Duration(seconds: 8));
-      try {
-        final InAppReview inAppReview = InAppReview.instance;
-        if (await inAppReview.isAvailable()) {
-          inAppReview.requestReview();
-        }
-      } catch (e) {
-        throw Exception(e);
-      }
     } else {
       Navigator.pushReplacement(
         context,
